@@ -5,8 +5,11 @@ import URLFetchRequest = GoogleAppsScript.URL_Fetch.URLFetchRequest
  * Stub various responses from specific urls
  * @param {Record<string, any>} responses
  */
-const urlFetchApp = (responses: Record<string, any>) => {
-  const urlFetchAppStub: typeof UrlFetchApp = {
+const responses: Record<string, any> = {}
+
+const urlFetchApp = (responsesInput: Record<string, any>) => {
+  Object.assign(responses, responsesInput)
+  global.UrlFetchApp = {
     fetch: (url: string) =>
       ({
         getContentText: () => {
@@ -21,7 +24,14 @@ const urlFetchApp = (responses: Record<string, any>) => {
       return ({ url } as unknown) as URLFetchRequest
     },
   }
-  global.UrlFetchApp = urlFetchAppStub
+  return {
+    addResponses: (responsesInput: Record<string, any>) => {
+      Object.assign(responses, responsesInput)
+    },
+    removeResponse: (responseKey: string) => {
+      delete responses[responseKey]
+    }
+  }
 }
 
 export default urlFetchApp
