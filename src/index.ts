@@ -1,2 +1,3 @@
-import blank from './blank'
-global.blank = blank;
+
+import floatPeople from './bobPeople'
+global.floatPeople = floatPeople;

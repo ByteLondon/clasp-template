@@ -29,11 +29,12 @@
   "repository": "rscoates/clasp-demo",
   "license": "MIT",
   "devDependencies": {
-    "@types/google-apps-script": "0.0.62",
-    "@types/chai": "^4.2.14",
-    "@types/mocha": "^8.2.0",
     "@google/clasp": "2.3.0",
+    "@types/chai": "^4.2.14",
+    "@types/google-apps-script": "0.0.62",
     "@types/lodash": "^4.14.165",
+    "@types/mocha": "^8.2.0",
+    "@types/sinon": "^10.0.2",
     "browserify": "16.2.2",
     "browserify-shim": "3.8.13",
     "chai": "^4.2.0",
@@ -45,11 +46,12 @@
     "npm-run-all": "4.1.3",
     "onchange": "4.1.0",
     "rimraf": "2.4.4",
+    "sinon": "^11.1.1",
+    "ts-node": "^9.0.0",
     "tsify": "4.0.0",
     "typescript": "^3.8.2",
     "watch": "1.0.2",
-    "watchify": "3.6.1",
-    "ts-node": "^9.0.0"
+    "watchify": "3.6.1"
   },
   "dependencies": {
     "lodash": "^4.17.20"
