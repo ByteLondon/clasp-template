@@ -1,5 +1,4 @@
 import {bobRequest} from "./config";
-import {UrlFetchApp} from 'google-apps-script'
 
 const BobPeople = {
     getAllBobPeople:()=>{
