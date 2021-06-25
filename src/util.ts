@@ -1,5 +1,5 @@
-import { memoize } from 'lodash/fp'
-import Sheet = GoogleAppsScript.Spreadsheet.Sheet
+import {memoize} from 'lodash/fp'
+import Sheet = GoogleAppsScript.Spreadsheet.Sheet;
 
 export const camelize: (s: string) => string = memoize((s: string): string => {
   return s
@@ -29,3 +29,13 @@ export const getSingleColumn = (dataSheet: Sheet, col: string) => {
     .map(e => e[0])
     .filter(e => e)
 }
+
+export const getFirstEmptyRow = (dataSheet: Sheet): number => {
+  const values = dataSheet.getRange('A:A').getValues()
+  let count = 0
+  while ( values[count] && values[count][0] != "" ) {
+    count;
+  }
+  return (count+1);
+}
+
