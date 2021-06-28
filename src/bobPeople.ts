@@ -1,35 +1,8 @@
 import {bobPeopleRequest} from "./config";
 import {getFirstEmptyRow} from "./util";
 import {Employee} from "./EmployeeType";
+import {peopleSheet} from "./peopleSheet";
 import Sheet = GoogleAppsScript.Spreadsheet.Sheet;
-
-const createPeopleSheet = (): Sheet => {
-    const mainDocument = SpreadsheetApp.getActiveSpreadsheet()
-
-    // Check if sheet exists, if not create it
-    let peopleSheet = mainDocument.getSheetByName('People')
-    if (!peopleSheet) {
-        mainDocument.insertSheet('People')
-        peopleSheet = mainDocument.getSheetByName('People')
-        if (!peopleSheet) {
-            throw new Error('Error Creating Sheet')
-        }
-        const colNames = []
-        colNames.push(
-            ["TableID",
-            "First Name",
-            "Last Name",
-            "Start Date",
-            "Location",
-            "Email",
-            "Bob ID",
-            "Float ID"]
-        )
-        peopleSheet.getRange(1, 1, 1, colNames[0].length).setValues(colNames)
-    }
-
-    return peopleSheet
-}
 
 const filterPeopleAlreadyInSheet = (ArrEmp: Array<Employee>, dataSheet: Sheet): Array<Array<string|number>> => {
 
@@ -50,7 +23,6 @@ const filterPeopleAlreadyInSheet = (ArrEmp: Array<Employee>, dataSheet: Sheet): 
 
     const filteredArrayOfEmployees = ArrEmp.filter(checkIfEmailNotInMap)
 
-    //need to create a clean array
     return filteredArrayOfEmployees.map((emp: Employee) => {
         lastRow += 1
         return [
@@ -88,7 +60,7 @@ const getAndCleanBobPeople = (dataSheet:Sheet):Array<Array<string|number>> => {
 }
 
 const updateBobPeople = () => {
-    const dataSheet:Sheet = createPeopleSheet()
+    const dataSheet:Sheet = peopleSheet()
     const cleanPeople:Array<Array<string|number>> = getAndCleanBobPeople(dataSheet)
 
     dataSheet.getRange(getFirstEmptyRow(dataSheet),1,cleanPeople.length,cleanPeople[0].length).setValues(cleanPeople)
