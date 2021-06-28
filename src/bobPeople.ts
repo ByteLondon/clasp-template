@@ -57,13 +57,13 @@ const getAndCleanBobPeople = (dataSheet:Sheet):Array<Array<string>> => {
 
     const arrayOfEmployeesFromBob: Array<Employee> = bobPeopleParsed.employees.map((emp: any) => {
         return {
-            "firstName": emp.firstName,
-            "lastName": emp.surname,
-            "startDate": emp.work.startDate,
-            "location": emp.work.site,
-            "email": emp.email,
-            "bobID": emp.id,
-            "floatID": null
+            firstName: emp.firstName,
+            lastName: emp.surname,
+            startDate: emp.work.startDate,
+            location: emp.work.site,
+            email: emp.email,
+            bobID: emp.id,
+            floatID: null
         }
     })
 
