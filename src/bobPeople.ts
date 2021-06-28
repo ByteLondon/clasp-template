@@ -1,9 +1,9 @@
-import {bobRequest} from "./config";
+import {bobPeopleRequest} from "./config";
 import {getFirstEmptyRow} from "./util";
 import Sheet = GoogleAppsScript.Spreadsheet.Sheet
 import {Employee} from "./EmployeeType";
 
-const getPeopleSheet = (): Sheet => {
+const createPeopleSheet = (): Sheet => {
     const mainDocument = SpreadsheetApp.getActiveSpreadsheet()
 
     // Check if sheet exists, if not create it
@@ -21,7 +21,8 @@ const getPeopleSheet = (): Sheet => {
             "Start Date",
             "Location",
             "Email",
-            "Bob ID"]
+            "Bob ID",
+            "Float ID"]
         )
         peopleSheet.getRange(1, 1, 1, colNames[0].length).setValues(colNames)
     }
@@ -51,7 +52,7 @@ const filterPeopleAlreadyInSheet = (ArrEmp: Array<Employee>, dataSheet: Sheet): 
 
 const getAndCleanBobPeople = (dataSheet:Sheet):Array<Array<string>> => {
 
-    const bobPeopleRaw = UrlFetchApp.fetch("https://api.hibob.com/v1/people?showInactive=true", bobRequest).getContentText()
+    const bobPeopleRaw = UrlFetchApp.fetch("https://api.hibob.com/v1/people?showInactive=true", bobPeopleRequest).getContentText()
     const bobPeopleParsed = JSON.parse(bobPeopleRaw).employees
 
     const arrayOfEmployeesFromBob: Array<Employee> = bobPeopleParsed.employees.map((emp: any) => {
@@ -62,6 +63,7 @@ const getAndCleanBobPeople = (dataSheet:Sheet):Array<Array<string>> => {
             "location": emp.work.site,
             "email": emp.email,
             "bobID": emp.id,
+            "floatID": null
         }
     })
 
@@ -69,7 +71,7 @@ const getAndCleanBobPeople = (dataSheet:Sheet):Array<Array<string>> => {
 }
 
 const updateBobPeople = () => {
-    const dataSheet:Sheet = getPeopleSheet()
+    const dataSheet:Sheet = createPeopleSheet()
     const cleanPeople:Array<Array<string>> = getAndCleanBobPeople(dataSheet)
 
     dataSheet.getRange(getFirstEmptyRow(dataSheet),1,cleanPeople.length,cleanPeople[0].length).setValues(cleanPeople)
