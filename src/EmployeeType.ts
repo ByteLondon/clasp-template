@@ -25,11 +25,9 @@ export const isEmployee: Is<Employee> = isStruct({
 export const isEmployeeArray: Is<Array<Employee>> = isArray(isEmployee)
 
 
-
-
 export type EmployeeFromBob = Omit<Employee, "tableID" | "floatID">
 
-export const isEmployeeFromBob: Is<Employee> = isStruct({
+export const isEmployeeFromBob: Is<EmployeeFromBob> = isStruct({
     firstName: isString,
     lastName: isString,
     startDate: isString,
