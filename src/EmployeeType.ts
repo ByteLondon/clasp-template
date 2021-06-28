@@ -1,4 +1,5 @@
 export type Employee = {
+    tableID: number,
     firstName: string
     lastName: string
     startDate: string

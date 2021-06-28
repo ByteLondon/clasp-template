@@ -1,7 +1,7 @@
 import {bobPeopleRequest} from "./config";
 import {getFirstEmptyRow} from "./util";
-import Sheet = GoogleAppsScript.Spreadsheet.Sheet
 import {Employee} from "./EmployeeType";
+import Sheet = GoogleAppsScript.Spreadsheet.Sheet;
 
 const createPeopleSheet = (): Sheet => {
     const mainDocument = SpreadsheetApp.getActiveSpreadsheet()
@@ -15,7 +15,8 @@ const createPeopleSheet = (): Sheet => {
             throw new Error('Error Creating Sheet')
         }
         const colNames = []
-        colNames.push([
+        colNames.push(
+            ["TableID",
             "First Name",
             "Last Name",
             "Start Date",
@@ -30,11 +31,11 @@ const createPeopleSheet = (): Sheet => {
     return peopleSheet
 }
 
-const filterPeopleAlreadyInSheet = (ArrEmp: Array<Employee>, dataSheet: Sheet): Array<any> => {
+const filterPeopleAlreadyInSheet = (ArrEmp: Array<Employee>, dataSheet: Sheet): Array<Array<string|number>> => {
 
-    const lastRow = getFirstEmptyRow(dataSheet) - 1
+    let lastRow = getFirstEmptyRow(dataSheet) - 1
 
-    const peopleAlreadyInRaw : Array<Array<string>> = dataSheet.getRange(1, 5, lastRow, 1).getValues()
+    const peopleAlreadyInRaw : Array<Array<string>> = dataSheet.getRange(1, 6, lastRow, 1).getValues()
 
     const peopleAlreadyIn :Array<string> = peopleAlreadyInRaw.map(([email]:Array<string>) => email)
 
@@ -47,16 +48,32 @@ const filterPeopleAlreadyInSheet = (ArrEmp: Array<Employee>, dataSheet: Sheet): 
         return !alreadyInMap.has(employee.email)
     }
 
-    return ArrEmp.filter(checkIfEmailNotInMap)
+    const filteredArrayOfEmployees = ArrEmp.filter(checkIfEmailNotInMap)
+
+    //need to create a clean array
+    return filteredArrayOfEmployees.map((emp: Employee) => {
+        lastRow += 1
+        return [
+            lastRow,
+            emp.firstName,
+            emp.lastName,
+            emp.startDate,
+            emp.location,
+            emp.email,
+            emp.bobID,
+            emp.floatID
+        ]
+    })
 }
 
-const getAndCleanBobPeople = (dataSheet:Sheet):Array<Array<string>> => {
+const getAndCleanBobPeople = (dataSheet:Sheet):Array<Array<string|number>> => {
 
     const bobPeopleRaw = UrlFetchApp.fetch("https://api.hibob.com/v1/people?showInactive=true", bobPeopleRequest).getContentText()
     const bobPeopleParsed = JSON.parse(bobPeopleRaw).employees
 
     const arrayOfEmployeesFromBob: Array<Employee> = bobPeopleParsed.employees.map((emp: any) => {
         return {
+            tableID: null,
             firstName: emp.firstName,
             lastName: emp.surname,
             startDate: emp.work.startDate,
@@ -72,7 +89,7 @@ const getAndCleanBobPeople = (dataSheet:Sheet):Array<Array<string>> => {
 
 const updateBobPeople = () => {
     const dataSheet:Sheet = createPeopleSheet()
-    const cleanPeople:Array<Array<string>> = getAndCleanBobPeople(dataSheet)
+    const cleanPeople:Array<Array<string|number>> = getAndCleanBobPeople(dataSheet)
 
     dataSheet.getRange(getFirstEmptyRow(dataSheet),1,cleanPeople.length,cleanPeople[0].length).setValues(cleanPeople)
 }
