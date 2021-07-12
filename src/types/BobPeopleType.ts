@@ -1,4 +1,4 @@
-import {Is, isArray, isString, isStruct} from "./guards";
+import {Is, isArray, isString, isStruct} from "../helper/guards";
 
 export type BobPeople = {
     id: string,
@@ -6,22 +6,12 @@ export type BobPeople = {
     surname: string,
     email: string,
     displayName: string,
-    personal: {
-        honorific: string,
-        shortBirthDate: string,
-        gender: string
-    },
-    about: {
-        avatar: string
-    },
     work: {
         title: string,
-        department: string,
         site: string,
-        startDate: string
+        startDate:string
     }
 }
-
 
 
 export const isBobPeople: Is<BobPeople> = isStruct({
@@ -30,17 +20,8 @@ export const isBobPeople: Is<BobPeople> = isStruct({
     surname: isString,
     email: isString,
     displayName: isString,
-    personal: isStruct({
-        honorific: isString,
-        shortBirthDate: isString,
-        gender: isString
-    }),
-    about: isStruct({
-        avatar: isString
-    }),
     work: isStruct({
         title: isString,
-        department: isString,
         site: isString,
         startDate: isString
     })

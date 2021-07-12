@@ -1,0 +1,1168 @@
+{
+  "employees": [
+    {
+      "fullName": "Robert Jones",
+      "displayName": "Rob Jones",
+      "custom": {
+        "category_1605196254035": {
+          "field_1605196299656": null
+        }
+      },
+      "personal": {
+        "shortBirthDate": "11-19",
+        "pronouns": null,
+        "communication": {
+          "skypeUsername": null,
+          "slackUsername": null
+        },
+        "honorific": "Mr",
+        "nationality": []
+      },
+      "creationDateTime": "2020-02-10T10:10:11.674354",
+      "work": {
+        "shortStartDate": "07-01",
+        "startDate": "2019-07-01",
+        "manager": "2240674450393530481",
+        "workPhone": null,
+        "tenureDuration": {
+          "periodISO": "P1Y11M24D",
+          "sortFactor": 714,
+          "humanize": "1 year, 11 months and 24 days"
+        },
+        "custom": {
+          "field_1606755020465": null
+        },
+        "durationOfEmployment": {
+          "periodISO": "P1Y11M24D",
+          "sortFactor": 714,
+          "humanize": "1 year, 11 months and 24 days"
+        },
+        "reportsToIdInCompany": 159,
+        "employeeIdInCompany": 148,
+        "reportsTo": {
+          "displayName": "Ben Chaitrakulthong",
+          "email": "ben.c@bytelondon.com",
+          "surname": "Chaitrakulthong",
+          "firstName": "Ben",
+          "id": "2240674450393530481"
+        },
+        "workMobile": null,
+        "indirectReports": null,
+        "department": "Media",
+        "siteId": 366161,
+        "tenureYears": 2,
+        "customColumns": {
+          "Contract end date": null,
+          "Linea Manager 3": null,
+          "Level new": [
+            "Planner"
+          ],
+          "Line Manager 2": "2240675962305904884",
+          "Management new": [
+            "joanna@bytelondon.com"
+          ]
+        },
+        "isManager": false,
+        "title": "Media Planner",
+        "site": "London",
+        "activeEffectiveDate": "2019-07-01",
+        "directReports": null,
+        "secondLevelManager": "2240675962305904884",
+        "daysOfPreviousService": 0,
+        "yearsOfService": 1.982
+      },
+      "avatarUrl": "https://cdn.filestackcontent.com/pU0SOipLRDOBKAjAxK5p?policy=eyJoYW5kbGUiOiJwVTBTT2lwTFJET0JLQWpBeEs1cCIsImV4cGlyeSI6NDYzNTkxODcwNCwiY2FsbCI6WyJyZWFkIiwgImNvbnZlcnQiXX0=&signature=b289848f0ad78da9344d7074b191202fe8c0c64687ae4e0f9052b7e2e7aa4a04",
+      "secondName": null,
+      "about": {
+        "foodPreferences": [],
+        "custom": {
+          "Social - Instagram_rY2t0": null,
+          "Food allergies_9anc9": null
+        },
+        "socialData": {
+          "linkedin": null,
+          "twitter": null,
+          "facebook": null
+        },
+        "superpowers": [],
+        "hobbies": [],
+        "about": null,
+        "avatar": "https://cdn.filestackcontent.com/pU0SOipLRDOBKAjAxK5p?policy=eyJoYW5kbGUiOiJwVTBTT2lwTFJET0JLQWpBeEs1cCIsImV4cGlyeSI6NDYzNTkxODcwNCwiY2FsbCI6WyJyZWFkIiwgImNvbnZlcnQiXX0=&signature=b289848f0ad78da9344d7074b191202fe8c0c64687ae4e0f9052b7e2e7aa4a04"
+      },
+      "companyId": 115593,
+      "email": "robert@bytelondon.com",
+      "surname": "Jones",
+      "firstName": "Robert",
+      "id": "2240675965501964558"
+    },
+    {
+      "fullName": "Ruby Goddard",
+      "displayName": "Ruby Goddard",
+      "custom": {
+        "category_1605196254035": {
+          "field_1605196299656": null
+        }
+      },
+      "personal": {
+        "shortBirthDate": "02-18",
+        "pronouns": "She / Her",
+        "communication": {
+          "skypeUsername": null,
+          "slackUsername": null
+        },
+        "honorific": "Miss",
+        "nationality": []
+      },
+      "creationDateTime": "2021-01-19T17:22:05.839141",
+      "work": {
+        "shortStartDate": "02-15",
+        "startDate": "2021-02-15",
+        "manager": "2240675966332436756",
+        "workPhone": null,
+        "tenureDuration": {
+          "periodISO": "P4M10D",
+          "sortFactor": 130,
+          "humanize": "4 months and 10 days"
+        },
+        "custom": {
+          "field_1606755020465": null
+        },
+        "durationOfEmployment": {
+          "periodISO": "P4M10D",
+          "sortFactor": 130,
+          "humanize": "4 months and 10 days"
+        },
+        "reportsToIdInCompany": 58,
+        "employeeIdInCompany": 208,
+        "reportsTo": {
+          "displayName": "Toby Baker",
+          "email": "toby@bytelondon.com",
+          "surname": "Baker",
+          "firstName": "Toby",
+          "id": "2240675966332436756"
+        },
+        "workMobile": null,
+        "indirectReports": null,
+        "department": "Account Planners",
+        "siteId": 366161,
+        "tenureYears": 0,
+        "customColumns": {
+          "Contract end date": null,
+          "Linea Manager 3": null,
+          "Level new": [
+            "Planner"
+          ],
+          "Line Manager 2": null,
+          "Management new": [
+            "joanna@bytelondon.com"
+          ]
+        },
+        "isManager": false,
+        "title": "Account Planner",
+        "site": "London",
+        "activeEffectiveDate": "2021-02-15",
+        "directReports": null,
+        "secondLevelManager": "2240674457565790358",
+        "daysOfPreviousService": 0,
+        "yearsOfService": 0.353
+      },
+      "avatarUrl": "https://cdn.filestackcontent.com/NlYL4y0QaN6NuXAQ7gAC?policy=eyJoYW5kbGUiOiJObFlMNHkwUWFONk51WEFRN2dBQyIsImV4cGlyeSI6NDYzNTkxODcwNCwiY2FsbCI6WyJyZWFkIiwgImNvbnZlcnQiXX0=&signature=1a739a602a692fa9bc7b2a7e68bd97ff714758ccaa865b7c320716451df1afa1",
+      "secondName": null,
+      "about": {
+        "foodPreferences": [
+          "vegetarian"
+        ],
+        "custom": {
+          "Social - Instagram_rY2t0": "https://www.instagram.com/rubygoddard",
+          "Food allergies_9anc9": "Vegetarian"
+        },
+        "socialData": {
+          "linkedin": "https://www.linkedin.com/in/ruby-goddard/",
+          "twitter": null,
+          "facebook": "https://www.facebook.com/ruby.goddard.52/"
+        },
+        "superpowers": [],
+        "hobbies": [
+          "reading",
+          "yoga",
+          "travel",
+          "cooking"
+        ],
+        "about": null,
+        "avatar": "https://cdn.filestackcontent.com/NlYL4y0QaN6NuXAQ7gAC?policy=eyJoYW5kbGUiOiJObFlMNHkwUWFONk51WEFRN2dBQyIsImV4cGlyeSI6NDYzNTkxODcwNCwiY2FsbCI6WyJyZWFkIiwgImNvbnZlcnQiXX0=&signature=1a739a602a692fa9bc7b2a7e68bd97ff714758ccaa865b7c320716451df1afa1"
+      },
+      "companyId": 115593,
+      "email": "ruby.goddard@bytelondon.com",
+      "surname": "Goddard",
+      "firstName": "Ruby",
+      "id": "2490216200865317165"
+    },
+    {
+      "fullName": "Alexander Duns",
+      "displayName": "Alex Duns",
+      "custom": {
+        "category_1605196254035": {
+          "field_1605196299656": null
+        }
+      },
+      "personal": {
+        "shortBirthDate": "04-08",
+        "pronouns": null,
+        "communication": {
+          "skypeUsername": null,
+          "slackUsername": null
+        },
+        "honorific": "Mr",
+        "nationality": []
+      },
+      "creationDateTime": "2020-02-10T10:07:11.056726",
+      "work": {
+        "shortStartDate": "08-29",
+        "startDate": "2017-08-29",
+        "manager": "2240674456265556103",
+        "workPhone": null,
+        "tenureDuration": {
+          "periodISO": "P3Y9M27D",
+          "sortFactor": 1377,
+          "humanize": "3 years, 9 months and 27 days"
+        },
+        "custom": {
+          "field_1606755020465": null
+        },
+        "durationOfEmployment": {
+          "periodISO": "P3Y9M27D",
+          "sortFactor": 1377,
+          "humanize": "3 years, 9 months and 27 days"
+        },
+        "reportsToIdInCompany": 46,
+        "employeeIdInCompany": 74,
+        "reportsTo": {
+          "displayName": "Duncan Birch (MHFA)",
+          "email": "duncan@bytelondon.com",
+          "surname": "Birch",
+          "firstName": "Duncan",
+          "id": "2240674456265556103"
+        },
+        "workMobile": null,
+        "indirectReports": null,
+        "department": "Account Planners",
+        "siteId": 366161,
+        "tenureYears": 4,
+        "customColumns": {
+          "Contract end date": null,
+          "Linea Manager 3": null,
+          "Level new": [
+            "Lead"
+          ],
+          "Line Manager 2": "2240674457565790358",
+          "Management new": [
+            "joanna@bytelondon.com"
+          ]
+        },
+        "isManager": false,
+        "title": "Lead Account Planner",
+        "site": "London",
+        "activeEffectiveDate": "2021-05-01",
+        "directReports": null,
+        "secondLevelManager": "2240674457565790358",
+        "daysOfPreviousService": 0,
+        "yearsOfService": 3.819
+      },
+      "avatarUrl": "https://cdn.filestackcontent.com/1gjZBzLBRVqPOqrnusW5?policy=eyJoYW5kbGUiOiIxZ2paQnpMQlJWcVBPcXJudXNXNSIsImV4cGlyeSI6NDYzNTkxODcwNCwiY2FsbCI6WyJyZWFkIiwgImNvbnZlcnQiXX0=&signature=05020e74459d0fc447d3cd38634a150058cd2b1d4d63d3daeb7e7b282a12c7d8",
+      "secondName": null,
+      "about": {
+        "foodPreferences": [],
+        "custom": {
+          "Social - Instagram_rY2t0": null,
+          "Food allergies_9anc9": null
+        },
+        "socialData": {
+          "linkedin": null,
+          "twitter": null,
+          "facebook": null
+        },
+        "superpowers": [],
+        "hobbies": [],
+        "about": null,
+        "avatar": "https://cdn.filestackcontent.com/1gjZBzLBRVqPOqrnusW5?policy=eyJoYW5kbGUiOiIxZ2paQnpMQlJWcVBPcXJudXNXNSIsImV4cGlyeSI6NDYzNTkxODcwNCwiY2FsbCI6WyJyZWFkIiwgImNvbnZlcnQiXX0=&signature=05020e74459d0fc447d3cd38634a150058cd2b1d4d63d3daeb7e7b282a12c7d8"
+      },
+      "companyId": 115593,
+      "email": "alex.duns@bytelondon.com",
+      "surname": "Duns",
+      "firstName": "Alexander",
+      "id": "2240674450418696306"
+    },
+    {
+      "fullName": "Laura Scott",
+      "displayName": "Laura Scott",
+      "custom": {
+        "category_1605196254035": {
+          "field_1605196299656": null
+        }
+      },
+      "personal": {
+        "shortBirthDate": "11-13",
+        "pronouns": "She / Her",
+        "communication": {
+          "skypeUsername": null,
+          "slackUsername": null
+        },
+        "honorific": "Ms",
+        "nationality": []
+      },
+      "creationDateTime": "2020-02-10T10:10:11.352891",
+      "work": {
+        "shortStartDate": "10-28",
+        "startDate": "2019-10-28",
+        "manager": "2240674450620022899",
+        "workPhone": null,
+        "tenureDuration": {
+          "periodISO": "P1Y7M28D",
+          "sortFactor": 598,
+          "humanize": "1 year, 7 months and 28 days"
+        },
+        "custom": {
+          "field_1606755020465": null
+        },
+        "durationOfEmployment": {
+          "periodISO": "P1Y7M28D",
+          "sortFactor": 598,
+          "humanize": "1 year, 7 months and 28 days"
+        },
+        "reportsToIdInCompany": 114,
+        "employeeIdInCompany": 165,
+        "reportsTo": {
+          "displayName": "Bel Moretti",
+          "email": "bel@bytelondon.com",
+          "surname": "Moretti",
+          "firstName": "Annabel",
+          "id": "2240674450620022899"
+        },
+        "workMobile": null,
+        "indirectReports": null,
+        "department": "Creative - Planners",
+        "siteId": 366161,
+        "tenureYears": 2,
+        "customColumns": {
+          "Contract end date": null,
+          "Linea Manager 3": null,
+          "Level new": [
+            "Planner"
+          ],
+          "Line Manager 2": null,
+          "Management new": [
+            "jeff.bowerman@bytelondon.com"
+          ]
+        },
+        "isManager": false,
+        "title": "Creative Planner",
+        "site": "London",
+        "activeEffectiveDate": "2019-10-28",
+        "directReports": null,
+        "secondLevelManager": "2240675962867941634",
+        "daysOfPreviousService": 0,
+        "yearsOfService": 1.656
+      },
+      "avatarUrl": "https://cdn.filestackcontent.com/8Re5nZnlT6RkIfey8JbU?policy=eyJoYW5kbGUiOiI4UmU1blpubFQ2UmtJZmV5OEpiVSIsImV4cGlyeSI6NDYzNTkxODcwNCwiY2FsbCI6WyJyZWFkIiwgImNvbnZlcnQiXX0=&signature=1d88bb41fe1614fe5fb545518e445a6aa3821d2be2c3d58cb5f2faf5571fadbb",
+      "secondName": null,
+      "about": {
+        "foodPreferences": [],
+        "custom": {
+          "Social - Instagram_rY2t0": null,
+          "Food allergies_9anc9": null
+        },
+        "socialData": {
+          "linkedin": "http://www.linkedin.com/in/lauraecscott",
+          "twitter": "http://www.twitter.com/laursco",
+          "facebook": null
+        },
+        "superpowers": [],
+        "hobbies": [],
+        "about": null,
+        "avatar": "https://cdn.filestackcontent.com/8Re5nZnlT6RkIfey8JbU?policy=eyJoYW5kbGUiOiI4UmU1blpubFQ2UmtJZmV5OEpiVSIsImV4cGlyeSI6NDYzNTkxODcwNCwiY2FsbCI6WyJyZWFkIiwgImNvbnZlcnQiXX0=&signature=1d88bb41fe1614fe5fb545518e445a6aa3821d2be2c3d58cb5f2faf5571fadbb"
+      },
+      "companyId": 115593,
+      "email": "laura.scott@bytelondon.com",
+      "surname": "Scott",
+      "firstName": "Laura",
+      "id": "2240675962792444160"
+    },
+    {
+      "fullName": "Chia-Chien  Yang ",
+      "displayName": "Vicky Yang ",
+      "custom": {
+        "category_1605196254035": {
+          "field_1605196299656": null
+        }
+      },
+      "personal": {
+        "shortBirthDate": "01-26",
+        "pronouns": null,
+        "communication": {
+          "skypeUsername": null,
+          "slackUsername": null
+        },
+        "honorific": "Ms",
+        "nationality": []
+      },
+      "creationDateTime": "2021-03-02T12:51:26.963722",
+      "work": {
+        "shortStartDate": "03-22",
+        "startDate": "2021-03-22",
+        "manager": "2240675962389790966",
+        "workPhone": null,
+        "tenureDuration": {
+          "periodISO": "P3M3D",
+          "sortFactor": 93,
+          "humanize": "3 months and 3 days"
+        },
+        "custom": {
+          "field_1606755020465": null
+        },
+        "durationOfEmployment": {
+          "periodISO": "P3M3D",
+          "sortFactor": 93,
+          "humanize": "3 months and 3 days"
+        },
+        "reportsToIdInCompany": 2,
+        "employeeIdInCompany": 213,
+        "reportsTo": {
+          "displayName": "Olive Tebby",
+          "email": "olive@bytelondon.com",
+          "surname": "Tebby",
+          "firstName": "Olive",
+          "id": "2240675962389790966"
+        },
+        "workMobile": null,
+        "indirectReports": null,
+        "department": "Creative - Design",
+        "siteId": 366161,
+        "tenureYears": 0,
+        "customColumns": {
+          "Contract end date": null,
+          "Linea Manager 3": null,
+          "Level new": [
+            "Lead"
+          ],
+          "Line Manager 2": "2240675967540396310",
+          "Management new": [
+            "jeff.bowerman@bytelondon.com"
+          ]
+        },
+        "isManager": false,
+        "title": "Lead Motion Designer",
+        "site": "London",
+        "activeEffectiveDate": "2021-03-22",
+        "directReports": null,
+        "secondLevelManager": "2338582697753968705",
+        "daysOfPreviousService": 0,
+        "yearsOfService": 0.257
+      },
+      "avatarUrl": "https://cdn.filestackcontent.com/boqHFNcySdGu4OPD2PNA?policy=eyJoYW5kbGUiOiJib3FIRk5jeVNkR3U0T1BEMlBOQSIsImV4cGlyeSI6NDYzNTkxODcwNCwiY2FsbCI6WyJyZWFkIiwgImNvbnZlcnQiXX0=&signature=9785e58dc2b40db1cbf717fafcbc7c87e76564c965132080591941965fd29a55",
+      "secondName": null,
+      "about": {
+        "foodPreferences": [],
+        "custom": {
+          "Social - Instagram_rY2t0": null,
+          "Food allergies_9anc9": null
+        },
+        "socialData": {
+          "linkedin": null,
+          "twitter": null,
+          "facebook": null
+        },
+        "superpowers": [],
+        "hobbies": [],
+        "about": null,
+        "avatar": "https://cdn.filestackcontent.com/boqHFNcySdGu4OPD2PNA?policy=eyJoYW5kbGUiOiJib3FIRk5jeVNkR3U0T1BEMlBOQSIsImV4cGlyeSI6NDYzNTkxODcwNCwiY2FsbCI6WyJyZWFkIiwgImNvbnZlcnQiXX0=&signature=9785e58dc2b40db1cbf717fafcbc7c87e76564c965132080591941965fd29a55"
+      },
+      "companyId": 115593,
+      "email": "vicky.yang@bytelondon.com",
+      "surname": "Yang ",
+      "firstName": "Chia-Chien ",
+      "id": "2520520559960260795"
+    },
+    {
+      "fullName": "Dinita  Moore ",
+      "displayName": "Dinita  Moore ",
+      "custom": {
+        "category_1605196254035": {
+          "field_1605196299656": null
+        }
+      },
+      "personal": {
+        "shortBirthDate": "12-23",
+        "pronouns": "She / Her",
+        "communication": {
+          "skypeUsername": null,
+          "slackUsername": null
+        },
+        "honorific": "Miss",
+        "nationality": []
+      },
+      "creationDateTime": "2021-05-04T16:34:05.367944",
+      "work": {
+        "shortStartDate": "05-10",
+        "startDate": "2021-05-10",
+        "manager": "2240675962867941634",
+        "workPhone": null,
+        "tenureDuration": {
+          "periodISO": "P1M15D",
+          "sortFactor": 45,
+          "humanize": "1 month and 15 days"
+        },
+        "custom": {
+          "field_1606755020465": null
+        },
+        "durationOfEmployment": {
+          "periodISO": "P1M15D",
+          "sortFactor": 45,
+          "humanize": "1 month and 15 days"
+        },
+        "reportsToIdInCompany": 43,
+        "employeeIdInCompany": 220,
+        "reportsTo": {
+          "displayName": "Tom Hamilton",
+          "email": "tomh@bytelondon.com",
+          "surname": "Hamilton",
+          "firstName": "Thomas",
+          "id": "2240675962867941634"
+        },
+        "workMobile": null,
+        "indirectReports": null,
+        "department": "Creative - Planners",
+        "siteId": 366161,
+        "tenureYears": 0,
+        "customColumns": {
+          "Contract end date": null,
+          "Linea Manager 3": null,
+          "Level new": [
+            "Lead"
+          ],
+          "Line Manager 2": null,
+          "Management new": [
+            "jeff.bowerman@bytelondon.com"
+          ]
+        },
+        "isManager": false,
+        "title": "Lead Community Planner",
+        "site": "London",
+        "activeEffectiveDate": "2021-05-10",
+        "directReports": null,
+        "secondLevelManager": "2338582697753968705",
+        "daysOfPreviousService": 0,
+        "yearsOfService": 0.123
+      },
+      "avatarUrl": "https://cdn.filestackcontent.com/MzNBeSVcQbKfSs10m82E?policy=eyJoYW5kbGUiOiJNek5CZVNWY1FiS2ZTczEwbTgyRSIsImV4cGlyeSI6NDYzNTkxODcwNCwiY2FsbCI6WyJyZWFkIiwgImNvbnZlcnQiXX0=&signature=72b91d80af0db4f0fd661a292339ad97486ea7e22d8705c80c7f8bf50e62ecbe",
+      "secondName": null,
+      "about": {
+        "foodPreferences": [],
+        "custom": {
+          "Social - Instagram_rY2t0": null,
+          "Food allergies_9anc9": null
+        },
+        "socialData": {
+          "linkedin": "https://www.linkedin.com/in/dinita",
+          "twitter": null,
+          "facebook": null
+        },
+        "superpowers": [],
+        "hobbies": [],
+        "about": null,
+        "avatar": "https://cdn.filestackcontent.com/MzNBeSVcQbKfSs10m82E?policy=eyJoYW5kbGUiOiJNek5CZVNWY1FiS2ZTczEwbTgyRSIsImV4cGlyeSI6NDYzNTkxODcwNCwiY2FsbCI6WyJyZWFkIiwgImNvbnZlcnQiXX0=&signature=72b91d80af0db4f0fd661a292339ad97486ea7e22d8705c80c7f8bf50e62ecbe"
+      },
+      "companyId": 115593,
+      "email": "dinita.moore@bytelondon.com",
+      "surname": "Moore ",
+      "firstName": "Dinita ",
+      "id": "2566293489734124066"
+    },
+    {
+      "fullName": "Joseph Elder",
+      "displayName": "Joe Elder",
+      "custom": {
+        "category_1605196254035": {
+          "field_1605196299656": null
+        }
+      },
+      "personal": {
+        "shortBirthDate": "02-15",
+        "pronouns": "He / Him",
+        "communication": {
+          "skypeUsername": null,
+          "slackUsername": null
+        },
+        "honorific": "Mr",
+        "nationality": []
+      },
+      "creationDateTime": "2020-02-10T10:07:11.454284",
+      "work": {
+        "shortStartDate": "09-30",
+        "startDate": "2019-09-30",
+        "manager": "2240675965845897491",
+        "workPhone": null,
+        "tenureDuration": {
+          "periodISO": "P1Y8M26D",
+          "sortFactor": 626,
+          "humanize": "1 year, 8 months and 26 days"
+        },
+        "custom": {
+          "field_1606755020465": null
+        },
+        "durationOfEmployment": {
+          "periodISO": "P1Y8M26D",
+          "sortFactor": 626,
+          "humanize": "1 year, 8 months and 26 days"
+        },
+        "reportsToIdInCompany": 86,
+        "employeeIdInCompany": 161,
+        "reportsTo": {
+          "displayName": "Phoebe Ord",
+          "email": "phoebe@bytelondon.com",
+          "surname": "Ord",
+          "firstName": "Phoebe",
+          "id": "2240675965845897491"
+        },
+        "workMobile": null,
+        "indirectReports": null,
+        "department": "Account Planners",
+        "siteId": 366161,
+        "tenureYears": 2,
+        "customColumns": {
+          "Contract end date": null,
+          "Linea Manager 3": null,
+          "Level new": [
+            "Executive"
+          ],
+          "Line Manager 2": "2380562836247020426",
+          "Management new": [
+            "joanna@bytelondon.com"
+          ]
+        },
+        "isManager": false,
+        "title": "Account Executive",
+        "site": "London",
+        "activeEffectiveDate": "2020-09-07",
+        "directReports": null,
+        "secondLevelManager": "2380562836247020426",
+        "daysOfPreviousService": 0,
+        "yearsOfService": 1.733
+      },
+      "avatarUrl": "https://cdn.filestackcontent.com/FEx1ey3SCyinCCnCUuL3?policy=eyJoYW5kbGUiOiJGRXgxZXkzU0N5aW5DQ25DVXVMMyIsImV4cGlyeSI6NDYzNTkxODcwNCwiY2FsbCI6WyJyZWFkIiwgImNvbnZlcnQiXX0=&signature=ab88d7cc8804a65795b65e5877cb287dd4ea7833a4fb27a4cd3254ed2ab1bc79",
+      "secondName": null,
+      "about": {
+        "foodPreferences": [],
+        "custom": {
+          "Social - Instagram_rY2t0": null,
+          "Food allergies_9anc9": "None"
+        },
+        "socialData": {
+          "linkedin": null,
+          "twitter": null,
+          "facebook": null
+        },
+        "superpowers": [],
+        "hobbies": [],
+        "about": null,
+        "avatar": "https://cdn.filestackcontent.com/FEx1ey3SCyinCCnCUuL3?policy=eyJoYW5kbGUiOiJGRXgxZXkzU0N5aW5DQ25DVXVMMyIsImV4cGlyeSI6NDYzNTkxODcwNCwiY2FsbCI6WyJyZWFkIiwgImNvbnZlcnQiXX0=&signature=ab88d7cc8804a65795b65e5877cb287dd4ea7833a4fb27a4cd3254ed2ab1bc79"
+      },
+      "companyId": 115593,
+      "email": "joe@bytelondon.com",
+      "surname": "Elder",
+      "firstName": "Joseph",
+      "id": "2240674453740585082"
+    },
+    {
+      "fullName": "Ilaria  De Rosa ",
+      "displayName": "Ilaria  De Rosa ",
+      "custom": {
+        "category_1605196254035": {
+          "field_1605196299656": null
+        }
+      },
+      "personal": {
+        "shortBirthDate": "11-30",
+        "pronouns": "She / Her",
+        "communication": {
+          "skypeUsername": null,
+          "slackUsername": null
+        },
+        "honorific": "Miss",
+        "nationality": []
+      },
+      "creationDateTime": "2020-10-01T07:50:33.089368",
+      "work": {
+        "shortStartDate": "10-12",
+        "startDate": "2020-10-12",
+        "manager": "2240674456726929544",
+        "workPhone": null,
+        "tenureDuration": {
+          "periodISO": "P8M13D",
+          "sortFactor": 253,
+          "humanize": "8 months and 13 days"
+        },
+        "custom": {
+          "field_1606755020465": null
+        },
+        "durationOfEmployment": {
+          "periodISO": "P8M13D",
+          "sortFactor": 253,
+          "humanize": "8 months and 13 days"
+        },
+        "reportsToIdInCompany": 71,
+        "employeeIdInCompany": 195,
+        "reportsTo": {
+          "displayName": "Enrico Lixia",
+          "email": "enrico@bytelondon.com",
+          "surname": "Lixia",
+          "firstName": "Enrico",
+          "id": "2240674456726929544"
+        },
+        "workMobile": null,
+        "indirectReports": null,
+        "department": "Creative - Planners",
+        "siteId": 366161,
+        "tenureYears": 1,
+        "customColumns": {
+          "Contract end date": null,
+          "Linea Manager 3": null,
+          "Level new": [
+            "Planner"
+          ],
+          "Line Manager 2": "2240674456265556103",
+          "Management new": [
+            "joanna@bytelondon.com"
+          ]
+        },
+        "isManager": false,
+        "title": "IT Community Planner",
+        "site": "London",
+        "activeEffectiveDate": "2020-10-12",
+        "directReports": null,
+        "secondLevelManager": "2240675962867941634",
+        "daysOfPreviousService": 0,
+        "yearsOfService": 0.698
+      },
+      "avatarUrl": "https://cdn.filestackcontent.com/1HSnZ9PhTAuDiXW6MYXR?policy=eyJoYW5kbGUiOiIxSFNuWjlQaFRBdURpWFc2TVlYUiIsImV4cGlyeSI6NDYzNTkxODcwNCwiY2FsbCI6WyJyZWFkIiwgImNvbnZlcnQiXX0=&signature=5b68048803fc2084b1d496e2f53278d4c69aa761296d04574ed8aae43a39c574",
+      "secondName": null,
+      "about": {
+        "foodPreferences": [],
+        "custom": {
+          "Social - Instagram_rY2t0": null,
+          "Food allergies_9anc9": null
+        },
+        "socialData": {
+          "linkedin": "https://www.linkedin.com/in/ilariaderosa",
+          "twitter": null,
+          "facebook": null
+        },
+        "superpowers": [
+          "creative strategy"
+        ],
+        "hobbies": [
+          "coding",
+          "music",
+          "reading",
+          "gaming",
+          "movies",
+          "drawing"
+        ],
+        "about": "I'm the Italian Community Planner for Twitch.",
+        "avatar": "https://cdn.filestackcontent.com/1HSnZ9PhTAuDiXW6MYXR?policy=eyJoYW5kbGUiOiIxSFNuWjlQaFRBdURpWFc2TVlYUiIsImV4cGlyeSI6NDYzNTkxODcwNCwiY2FsbCI6WyJyZWFkIiwgImNvbnZlcnQiXX0=&signature=5b68048803fc2084b1d496e2f53278d4c69aa761296d04574ed8aae43a39c574"
+      },
+      "companyId": 115593,
+      "email": "ilaria.derosa@bytelondon.com",
+      "surname": "De Rosa ",
+      "firstName": "Ilaria ",
+      "id": "2410203201887273680"
+    },
+    {
+      "fullName": "Eleanor Rosa Mai Owen",
+      "displayName": "Ellie Owen ",
+      "custom": {
+        "category_1605196254035": {
+          "field_1605196299656": null
+        }
+      },
+      "personal": {
+        "shortBirthDate": "12-27",
+        "pronouns": "She / Her",
+        "communication": {
+          "skypeUsername": null,
+          "slackUsername": null
+        },
+        "honorific": "Miss",
+        "nationality": []
+      },
+      "creationDateTime": "2021-04-29T08:38:37.275307",
+      "work": {
+        "shortStartDate": "05-10",
+        "startDate": "2021-05-10",
+        "manager": "2348074581803139578",
+        "workPhone": null,
+        "tenureDuration": {
+          "periodISO": "P1M15D",
+          "sortFactor": 45,
+          "humanize": "1 month and 15 days"
+        },
+        "custom": {
+          "field_1606755020465": null
+        },
+        "durationOfEmployment": {
+          "periodISO": "P1M15D",
+          "sortFactor": 45,
+          "humanize": "1 month and 15 days"
+        },
+        "reportsToIdInCompany": 179,
+        "employeeIdInCompany": 219,
+        "reportsTo": {
+          "displayName": "Sita Shah",
+          "email": "sita@bytelondon.com",
+          "surname": "Shah",
+          "firstName": "Sita",
+          "id": "2348074581803139578"
+        },
+        "workMobile": null,
+        "indirectReports": null,
+        "department": "Creative - Planners",
+        "siteId": 366161,
+        "tenureYears": 0,
+        "customColumns": {
+          "Contract end date": null,
+          "Linea Manager 3": null,
+          "Level new": [
+            "Planner"
+          ],
+          "Line Manager 2": null,
+          "Management new": [
+            "jeff.bowerman@bytelondon.com"
+          ]
+        },
+        "isManager": false,
+        "title": "Creative Planner",
+        "site": "London",
+        "activeEffectiveDate": "2021-05-10",
+        "directReports": null,
+        "secondLevelManager": "2338582697753968705",
+        "daysOfPreviousService": 0,
+        "yearsOfService": 0.123
+      },
+      "avatarUrl": "https://cdn.filestackcontent.com/r79KP7p5SCusyV5wxIfy?policy=eyJoYW5kbGUiOiJyNzlLUDdwNVNDdXN5VjV3eElmeSIsImV4cGlyeSI6NDYzNTkxODcwNCwiY2FsbCI6WyJyZWFkIiwgImNvbnZlcnQiXX0=&signature=0dc7a77730fb5bdf7692e1ce994add4d822524ebe45d05434999f2b8a4d20976",
+      "secondName": "Rosa Mai",
+      "about": {
+        "foodPreferences": [],
+        "custom": {
+          "Social - Instagram_rY2t0": null,
+          "Food allergies_9anc9": "Gluten"
+        },
+        "socialData": {
+          "linkedin": "https://www.linkedin.com/in/eleanorowen94",
+          "twitter": null,
+          "facebook": null
+        },
+        "superpowers": [
+          "creative strategy",
+          "pitching & presenting",
+          "big ideas"
+        ],
+        "hobbies": [
+          "dancing",
+          "photography",
+          "running"
+        ],
+        "about": null,
+        "avatar": "https://cdn.filestackcontent.com/r79KP7p5SCusyV5wxIfy?policy=eyJoYW5kbGUiOiJyNzlLUDdwNVNDdXN5VjV3eElmeSIsImV4cGlyeSI6NDYzNTkxODcwNCwiY2FsbCI6WyJyZWFkIiwgImNvbnZlcnQiXX0=&signature=0dc7a77730fb5bdf7692e1ce994add4d822524ebe45d05434999f2b8a4d20976"
+      },
+      "companyId": 115593,
+      "email": "ellie.owen@bytelondon.com",
+      "surname": "Owen",
+      "firstName": "Eleanor",
+      "id": "2562430299862467172"
+    },
+    {
+      "fullName": "Elinor Cantrill",
+      "displayName": "Ellie Cantrill (MHFA)",
+      "custom": {
+        "category_1605196254035": {
+          "field_1605196299656": null
+        }
+      },
+      "personal": {
+        "shortBirthDate": "12-05",
+        "pronouns": "She / Her",
+        "communication": {
+          "skypeUsername": null,
+          "slackUsername": null
+        },
+        "honorific": "Mrs",
+        "nationality": []
+      },
+      "creationDateTime": "2020-02-10T10:07:11.415641",
+      "work": {
+        "shortStartDate": "03-19",
+        "startDate": "2018-03-19",
+        "manager": "2240674450620022899",
+        "workPhone": null,
+        "tenureDuration": {
+          "periodISO": "P3Y3M6D",
+          "sortFactor": 1176,
+          "humanize": "3 years, 3 months and 6 days"
+        },
+        "custom": {
+          "field_1606755020465": null
+        },
+        "durationOfEmployment": {
+          "periodISO": "P3Y3M6D",
+          "sortFactor": 1176,
+          "humanize": "3 years, 3 months and 6 days"
+        },
+        "reportsToIdInCompany": 114,
+        "employeeIdInCompany": 95,
+        "reportsTo": {
+          "displayName": "Bel Moretti",
+          "email": "bel@bytelondon.com",
+          "surname": "Moretti",
+          "firstName": "Annabel",
+          "id": "2240674450620022899"
+        },
+        "workMobile": null,
+        "indirectReports": null,
+        "department": "Creative - Planners",
+        "siteId": 366161,
+        "tenureYears": 3,
+        "customColumns": {
+          "Contract end date": null,
+          "Linea Manager 3": null,
+          "Level new": [
+            "Planner"
+          ],
+          "Line Manager 2": null,
+          "Management new": [
+            "jeff.bowerman@bytelondon.com"
+          ]
+        },
+        "isManager": false,
+        "title": "Creative Planner",
+        "site": "London",
+        "activeEffectiveDate": "2018-03-19",
+        "directReports": null,
+        "secondLevelManager": "2240675962867941634",
+        "daysOfPreviousService": 0,
+        "yearsOfService": 3.266
+      },
+      "avatarUrl": "https://cdn.filestackcontent.com/pamvfTSRsWD7WerJWS2m?policy=eyJoYW5kbGUiOiJwYW12ZlRTUnNXRDdXZXJKV1MybSIsImV4cGlyeSI6NDYzNTkxODcwNCwiY2FsbCI6WyJyZWFkIiwgImNvbnZlcnQiXX0=&signature=41ab18888e846cdb579bc2f12b067ecb5486b9a572b6eabbebdbe2f1913eeee9",
+      "secondName": null,
+      "about": {
+        "foodPreferences": [],
+        "custom": {
+          "Social - Instagram_rY2t0": null,
+          "Food allergies_9anc9": null
+        },
+        "socialData": {
+          "linkedin": null,
+          "twitter": null,
+          "facebook": null
+        },
+        "superpowers": [],
+        "hobbies": [],
+        "about": null,
+        "avatar": "https://cdn.filestackcontent.com/pamvfTSRsWD7WerJWS2m?policy=eyJoYW5kbGUiOiJwYW12ZlRTUnNXRDdXZXJKV1MybSIsImV4cGlyeSI6NDYzNTkxODcwNCwiY2FsbCI6WyJyZWFkIiwgImNvbnZlcnQiXX0=&signature=41ab18888e846cdb579bc2f12b067ecb5486b9a572b6eabbebdbe2f1913eeee9"
+      },
+      "companyId": 115593,
+      "email": "elinor@bytelondon.com",
+      "surname": "Cantrill",
+      "firstName": "Elinor",
+      "id": "2240674453371486327"
+    },
+    {
+      "fullName": "Richard Roche",
+      "displayName": "Richard Roche",
+      "custom": {
+        "category_1605196254035": {
+          "field_1605196299656": null
+        }
+      },
+      "personal": {
+        "shortBirthDate": "08-05",
+        "pronouns": null,
+        "communication": {
+          "skypeUsername": null,
+          "slackUsername": null
+        },
+        "honorific": "Mr",
+        "nationality": []
+      },
+      "creationDateTime": "2020-02-10T10:10:11.377737",
+      "work": {
+        "shortStartDate": "11-08",
+        "startDate": "2017-11-08",
+        "manager": "2398030062248002111",
+        "workPhone": null,
+        "tenureDuration": {
+          "periodISO": "P3Y7M17D",
+          "sortFactor": 1307,
+          "humanize": "3 years, 7 months and 17 days"
+        },
+        "custom": {
+          "field_1606755020465": null
+        },
+        "durationOfEmployment": {
+          "periodISO": "P3Y7M17D",
+          "sortFactor": 1307,
+          "humanize": "3 years, 7 months and 17 days"
+        },
+        "reportsToIdInCompany": 189,
+        "employeeIdInCompany": 80,
+        "reportsTo": {
+          "displayName": "Thomas Groves",
+          "email": "thomas.groves@bytelondon.com",
+          "surname": "Groves",
+          "firstName": "Thomas",
+          "id": "2398030062248002111"
+        },
+        "workMobile": null,
+        "indirectReports": null,
+        "department": "Creative - Design",
+        "siteId": 366161,
+        "tenureYears": 4,
+        "customColumns": {
+          "Contract end date": null,
+          "Linea Manager 3": null,
+          "Level new": [
+            "Planner"
+          ],
+          "Line Manager 2": null,
+          "Management new": [
+            "jeff.bowerman@bytelondon.com"
+          ]
+        },
+        "isManager": false,
+        "title": "Designer",
+        "site": "London",
+        "activeEffectiveDate": "2021-02-06",
+        "directReports": null,
+        "secondLevelManager": "2240675962389790966",
+        "daysOfPreviousService": 0,
+        "yearsOfService": 3.625
+      },
+      "avatarUrl": "https://cdn.filestackcontent.com/Um7kNS7XQzuYX8wwqRSy?policy=eyJoYW5kbGUiOiJVbTdrTlM3WFF6dVlYOHd3cVJTeSIsImV4cGlyeSI6NDYzNTkxODcwNCwiY2FsbCI6WyJyZWFkIiwgImNvbnZlcnQiXX0=&signature=f9d51e554bf1ec289d5e62bbf4ea0fc6390e354b325e98f48980884d25d63bb0",
+      "secondName": null,
+      "about": {
+        "foodPreferences": [],
+        "custom": {
+          "Social - Instagram_rY2t0": null,
+          "Food allergies_9anc9": null
+        },
+        "socialData": {
+          "linkedin": null,
+          "twitter": null,
+          "facebook": null
+        },
+        "superpowers": [],
+        "hobbies": [],
+        "about": null,
+        "avatar": "https://cdn.filestackcontent.com/Um7kNS7XQzuYX8wwqRSy?policy=eyJoYW5kbGUiOiJVbTdrTlM3WFF6dVlYOHd3cVJTeSIsImV4cGlyeSI6NDYzNTkxODcwNCwiY2FsbCI6WyJyZWFkIiwgImNvbnZlcnQiXX0=&signature=f9d51e554bf1ec289d5e62bbf4ea0fc6390e354b325e98f48980884d25d63bb0"
+      },
+      "companyId": 115593,
+      "email": "richard@bytelondon.com",
+      "surname": "Roche",
+      "firstName": "Richard",
+      "id": "2240675962993770757"
+    },
+    {
+      "fullName": "Ashley Fletcher",
+      "displayName": "Ashley Fletcher",
+      "custom": {
+        "category_1605196254035": {
+          "field_1605196299656": null
+        }
+      },
+      "personal": {
+        "shortBirthDate": "09-12",
+        "pronouns": null,
+        "communication": {
+          "skypeUsername": null,
+          "slackUsername": null
+        },
+        "honorific": "Mr",
+        "nationality": []
+      },
+      "creationDateTime": "2020-02-10T10:07:11.049376",
+      "work": {
+        "shortStartDate": "03-12",
+        "startDate": "2018-03-12",
+        "manager": "2240674456995365006",
+        "workPhone": null,
+        "tenureDuration": {
+          "periodISO": "P3Y3M13D",
+          "sortFactor": 1183,
+          "humanize": "3 years, 3 months and 13 days"
+        },
+        "custom": {
+          "field_1606755020465": null
+        },
+        "durationOfEmployment": {
+          "periodISO": "P3Y3M13D",
+          "sortFactor": 1183,
+          "humanize": "3 years, 3 months and 13 days"
+        },
+        "reportsToIdInCompany": 6,
+        "employeeIdInCompany": 98,
+        "reportsTo": {
+          "displayName": "Isabel Perry",
+          "email": "isabel@bytelondon.com",
+          "surname": "Perry",
+          "firstName": "Isabel",
+          "id": "2240674456995365006"
+        },
+        "workMobile": null,
+        "indirectReports": null,
+        "department": "Tech",
+        "siteId": 366161,
+        "tenureYears": 3,
+        "customColumns": {
+          "Contract end date": null,
+          "Linea Manager 3": null,
+          "Level new": [
+            "Head"
+          ],
+          "Line Manager 2": null,
+          "Management new": [
+            "isabel@bytelondon.com"
+          ]
+        },
+        "isManager": false,
+        "title": "Head of AR",
+        "site": "London",
+        "activeEffectiveDate": "2021-01-01",
+        "directReports": null,
+        "secondLevelManager": "2240674450133483622",
+        "daysOfPreviousService": 0,
+        "yearsOfService": 3.285
+      },
+      "avatarUrl": "https://cdn.filestackcontent.com/lSAMNSCORcCRPkLA6SiQ?policy=eyJoYW5kbGUiOiJsU0FNTlNDT1JjQ1JQa0xBNlNpUSIsImV4cGlyeSI6NDYzNTkxODcwNCwiY2FsbCI6WyJyZWFkIiwgImNvbnZlcnQiXX0=&signature=8eb9620d763cdedcf4c526de5c85a7c1a94f4dc683cc3ce692998e63ed2313c1",
+      "secondName": null,
+      "about": {
+        "foodPreferences": [],
+        "custom": {
+          "Social - Instagram_rY2t0": null,
+          "Food allergies_9anc9": null
+        },
+        "socialData": {
+          "linkedin": null,
+          "twitter": null,
+          "facebook": null
+        },
+        "superpowers": [],
+        "hobbies": [],
+        "about": null,
+        "avatar": "https://cdn.filestackcontent.com/lSAMNSCORcCRPkLA6SiQ?policy=eyJoYW5kbGUiOiJsU0FNTlNDT1JjQ1JQa0xBNlNpUSIsImV4cGlyeSI6NDYzNTkxODcwNCwiY2FsbCI6WyJyZWFkIiwgImNvbnZlcnQiXX0=&signature=8eb9620d763cdedcf4c526de5c85a7c1a94f4dc683cc3ce692998e63ed2313c1"
+      },
+      "companyId": 115593,
+      "email": "ashley@bytelondon.com",
+      "surname": "Fletcher",
+      "firstName": "Ashley",
+      "id": "2240674450351587439"
+    }
+  ]
+}

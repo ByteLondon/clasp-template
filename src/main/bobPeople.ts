@@ -1,17 +1,16 @@
-import {getFirstEmptyRow} from "./util";
-import {EmployeeFromBob, isEmployeeFromBobArray} from "./EmployeeType";
-import {peopleSheet} from "./peopleSheet";
+import {getFirstEmptyRow} from "../helper/util";
+import {EmployeeFromBob} from "../types/EmployeeType";
+import {getSheet} from "../helper/getSheet";
 import Sheet = GoogleAppsScript.Spreadsheet.Sheet;
-import {BobPeople} from "./BobPeopleType";
-import {isString} from "./guards";
-import {bobRequest} from "./bobChangeRequest";
+import {isString} from "../helper/guards";
+import {bobRequest} from "../webRequests/bobRequest";
+import {BobPeople} from "../types/BobPeopleType";
 
-const getAndCleanBobPeople = (dataSheet:Sheet):Array<Array<string|number>> => {
-
+const getAndCleanBobPeople = (): Array<EmployeeFromBob> => {
 
     const bobPeopleParsed =  bobRequest("people","get")
 
-    const arrayOfEmployeesFromBob: Array<EmployeeFromBob> = bobPeopleParsed.map((emp: BobPeople) => {
+    return bobPeopleParsed.map((emp:BobPeople) => {
         return {
             firstName: emp.firstName,
             lastName: emp.surname,
@@ -21,20 +20,20 @@ const getAndCleanBobPeople = (dataSheet:Sheet):Array<Array<string|number>> => {
             bobID: emp.id
         }
     })
+}
 
-    if(!isEmployeeFromBobArray(arrayOfEmployeesFromBob)){
-        throw new Error ("Bob Employee Array Corrupt or Missing after Parsing")
-    }
-
-    return filterPeopleAlreadyInSheet(arrayOfEmployeesFromBob, dataSheet);
+const checkIfEmailNotInMap = (alreadyInMap: Map<string, string>) => (employee: EmployeeFromBob ): boolean => {
+    return !alreadyInMap.has(employee.email)
 }
 
 const filterPeopleAlreadyInSheet = (ArrEmp: Array<EmployeeFromBob>, dataSheet: Sheet): Array<Array<string|number>> => {
 
-    let lastRow = getFirstEmptyRow(dataSheet) - 1
+    let lastRow: number = getFirstEmptyRow(dataSheet) - 1
 
-    const peopleAlreadyInRaw : Array<Array<string>> = dataSheet.getRange(1, 6, lastRow, 1).getValues()
+    const peopleAlreadyInRaw = dataSheet.getRange(1, 6, lastRow, 1).getValues()
+
     const peopleAlreadyIn :Array<string> = peopleAlreadyInRaw.map(([email]:Array<string>) => email)
+
 
     const alreadyInMap: Map<string, string> = peopleAlreadyIn.reduce((acc: Map<string, string>, curr: string) => {
 
@@ -45,11 +44,11 @@ const filterPeopleAlreadyInSheet = (ArrEmp: Array<EmployeeFromBob>, dataSheet: S
         return acc
     }, new Map())
 
-    const checkIfEmailNotInMap = (employee: EmployeeFromBob): boolean => {
-        return !alreadyInMap.has(employee.email)
-    }
+    const filteredArrayOfEmployees = ArrEmp.filter(checkIfEmailNotInMap(alreadyInMap))
 
-    const filteredArrayOfEmployees = ArrEmp.filter(checkIfEmailNotInMap)
+    if(filteredArrayOfEmployees.length<1){
+        throw new Error ("No new Employees to update")
+    }
 
     return filteredArrayOfEmployees.map((emp: EmployeeFromBob) => {
         lastRow += 1
@@ -66,10 +65,13 @@ const filterPeopleAlreadyInSheet = (ArrEmp: Array<EmployeeFromBob>, dataSheet: S
 }
 
 const updateBobPeople = () => {
-    const dataSheet:Sheet = peopleSheet()
-    const cleanPeople:Array<Array<string|number>> = getAndCleanBobPeople(dataSheet)
+    const dataSheet:Sheet = getSheet("people")
+    const getPeople = getAndCleanBobPeople()
+    const cleanPeople = filterPeopleAlreadyInSheet(getPeople,dataSheet)
 
     dataSheet.getRange(getFirstEmptyRow(dataSheet),1,cleanPeople.length,cleanPeople[0].length).setValues(cleanPeople)
 }
 
-export default BobPeople
+export default {
+    bobPeople: getSheet, filterPeopleAlreadyInSheet, getAndCleanBobPeople, updateBobPeople, checkIfEmailNotInMap
+}
