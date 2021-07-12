@@ -19,15 +19,6 @@ GasStubs.UrlFetchApp.addResponses({
 
 describe('bobPeople', () => {
 
-    describe('getAndCleanBobPeople', () => {
-
-        it('Should get an Array of EmployeesFromBob', () => {
-            const func = BobPeople.getAndCleanBobPeople
-            expect(func()).to.exist
-        })
-
-    })
-
     describe('checkIfEmailNotInMap', () => {
 
         const mapToCheck: Map<string, string> = new Map()

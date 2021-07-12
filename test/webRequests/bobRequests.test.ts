@@ -7,7 +7,7 @@ describe('bobRequests', () => {
 
         it('returns array from Bob People', () => {
             GasStubs.UrlFetchApp.addResponses({
-                'https://api.hibob.com/v1/people?showInactive=true': JSON.stringify(require("../../src/testing/bobPeople.json"))
+                'https://api.hibob.com/v1/people?showInactive=true': ({content: JSON.stringify(require("../../src/testing/bobPeople.json"))})
             })
             const func = bobRequest
             const endpoint = 'people'
@@ -20,7 +20,7 @@ describe('bobRequests', () => {
 
         it('shoud throw error when empty array', () => {
             GasStubs.UrlFetchApp.addResponses({
-                'https://api.hibob.com/v1/people?showInactive=true': JSON.stringify({employees:[]})
+                'https://api.hibob.com/v1/people?showInactive=true': ({content: JSON.stringify({employees:[]})})
             })
             const func = bobRequest
             const endpoint = 'people'
@@ -31,14 +31,14 @@ describe('bobRequests', () => {
 
         it('shoud throw error when missing fields', () => {
             GasStubs.UrlFetchApp.addResponses({
-                'https://api.hibob.com/v1/people?showInactive=true': JSON.stringify({employees:[{
+                'https://api.hibob.com/v1/people?showInactive=true': ({content:JSON.stringify({employees:[{
                         id: "12121212",
                         firstName: "alejandro",
                         surname: "reinel",
                         email:"email@something.com",
                         displayName: "Alejandro Reinel"
                     }]})
-            })
+            })})
             const func = bobRequest
             const endpoint = 'people'
             const method = "get"
@@ -48,7 +48,7 @@ describe('bobRequests', () => {
 
         it('shoud throw error when incorrect fields', () => {
             GasStubs.UrlFetchApp.addResponses({
-                'https://api.hibob.com/v1/people?showInactive=true': JSON.stringify({employees:[{
+                'https://api.hibob.com/v1/people?showInactive=true': ({content:JSON.stringify({employees:[{
                         id: 12121212,
                         firstName: "alejandro",
                         surname: "reinel",
@@ -59,7 +59,7 @@ describe('bobRequests', () => {
                             site:  "London"
                         }
                     }]})
-            })
+            })})
             const func = bobRequest
             const endpoint = 'people'
             const method = "get"
