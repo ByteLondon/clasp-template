@@ -1,5 +1,5 @@
 import {expect} from 'chai'
-import {dateCalculator, getNumberOfDays} from "../../src/helper/time";
+import {dateCalculator, dateDaysAgo, getNumberOfDays} from "../../src/helper/time";
 import * as GasStubs from "../gasStubs";
 
 GasStubs.UrlFetchApp.addResponses({
@@ -36,17 +36,6 @@ describe('utils', () => {
             expect(() => func(startDate,endDate)).to.throw
         })
 
-        // it('should return 2 days after entered date' ,() => {
-        //     const func = requestTypeDecoder
-        //     const floatHolidayType = "not a valid request"
-        //     expect(() => func(floatHolidayType)).to.throw
-        // })
-        //
-        // it('should return Error if not found (Number) ' ,() => {
-        //     const func = requestTypeDecoder
-        //     const floatHolidayType = 2131313 as unknown as string
-        //     expect(() => func(floatHolidayType)).to.throw
-        // })
     })
 
     describe('dateCalculator', () => {
@@ -79,5 +68,20 @@ describe('utils', () => {
         })
 
 
+    })
+
+    describe('dateDaysAgo', () => {
+
+        it('Should Date Two days ago', () => {
+            const func = dateDaysAgo
+            const change = 2
+            expect(func(change)).to.equal('2021-07-10T01:07:00.000+0100')
+        })
+
+        it('Should return Today', () => {
+            const func = dateDaysAgo
+            const change = 0
+            expect(func(change)).to.equal('2021-07-12T01:07:00.000+0100')
+        })
     })
 })
