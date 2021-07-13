@@ -26,6 +26,11 @@ export const isLiteral = <A>(...as: A[]): Is<A> => (u: unknown): u is A => {
   return false
 }
 
+/** Use this to enforce exhaustiveness checking on switch statements. */
+export const never = (a: never): never => {
+  throw new Error(`unexpected: ${a}`)
+}
+
 /**
  * Helper to add `null` to the allowed type.
  * @param isa the type guard for `A`
