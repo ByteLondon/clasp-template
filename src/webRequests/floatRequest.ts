@@ -40,7 +40,7 @@ export const floatRequest = (endpoint:'people' | 'changes', method: 'get')=> {
         }
     }
 
-    if (!isFloatPeopleRawArray(rawResponse)) {
+    if (endpoint === "people" &&!isFloatPeopleRawArray(rawResponse)) {
         throw new Error("Float People Array Corrupt or Missing after Parsing")
     }
 
