@@ -69,4 +69,3 @@ export const requestTypeDecoder = (targetType: string): number => {
             throw new Error("Leave Type incorrect/not found")
     }
 }
-

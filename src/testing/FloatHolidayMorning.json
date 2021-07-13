@@ -1,0 +1,20 @@
+{
+  "timeoff_id": 6848981,
+  "timeoff_type_id": "259639",
+  "timeoff_type_name": "Paid Time Off",
+  "start_date": "2021-05-28",
+  "end_date": "2021-05-28",
+  "start_time": "09:00",
+  "hours": 4,
+  "timeoff_notes": null,
+  "modified_by": "603210",
+  "created_by": "603210",
+  "created": "2021-07-13 11:24:49",
+  "modified": "2021-07-13 11:24:49",
+  "repeat_state": 0,
+  "repeat_end": null,
+  "full_day": "0",
+  "people_ids": [
+    "17603026"
+  ]
+}

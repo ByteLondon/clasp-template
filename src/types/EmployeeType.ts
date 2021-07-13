@@ -1,4 +1,4 @@
-import {Is, isArray, isNumber, isString, isStruct} from "./guards";
+import {Is, isArray, isNumber, isString, isStruct} from "../helper/guards";
 
 export type Employee = {
     tableID: number,

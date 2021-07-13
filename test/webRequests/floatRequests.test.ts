@@ -102,7 +102,7 @@ describe('floatRequests', () => {
 
         it('Uploads change and returns FloatChange object', () => {
 
-            const content = JSON.stringify(require("../../src/testing/FloatHolidayPost.json"))
+            const content = JSON.stringify(require("../../src/testing/FloatHolidayFullDay.json"))
 
             GasStubs.UrlFetchApp.addResponses({
                 'https://api.float.com/v3/timeoffs': ({content: content})
@@ -111,7 +111,7 @@ describe('floatRequests', () => {
             const func = floatPost
             const endpoint = 'timeoffs'
             const method = "post"
-            const expected = require("../../src/testing/FloatHolidayPost.json")
+            const expected = require("../../src/testing/FloatHolidayFullDay.json")
             const output = func(endpoint,method,payloadExample)
             expect(output).to.deep.equal(expected)
             GasStubs.UrlFetchApp.removeResponse('https://api.float.com/v3/people')
