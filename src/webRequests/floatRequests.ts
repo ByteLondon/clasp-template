@@ -1,10 +1,10 @@
 import URLFetchRequestOptions = GoogleAppsScript.URL_Fetch.URLFetchRequestOptions;
-import {FloatPayload} from "../types/FloatPayload";
-import {FloatChanges, isFloatChanges} from "../types/ChangeType";
+import {FloatPayloadType} from "../types/FloatPayloadType";
 import {isFloatHeaders} from "../types/FloatHeadersType";
 import {isFloatPeopleRawArray} from "../types/FloatPeopleType";
+import {FloatHolidays, isFloatHolidays} from "../types/FloatHolidaysType";
 
-export const floatRequest = (endpoint:'people' | 'changes', method: 'get')=> {
+export const floatRequests = (endpoint:'people' | 'changes', method: 'get')=> {
 
     const floatHeaders = (page: number) => { return {
         accept: "application/json",
@@ -47,7 +47,7 @@ export const floatRequest = (endpoint:'people' | 'changes', method: 'get')=> {
     return rawResponse
 }
 
-export const floatPost = (endpoint:'timeoffs', method: 'post' | 'delete', payloadData?:FloatPayload, deleteID?: number) :FloatChanges=> {
+export const floatPost = (endpoint:'timeoffs', method: 'post' | 'delete', payloadData:FloatPayloadType) :FloatHolidays=> {
 
     const floatHeaders = () => {
         return {
@@ -65,18 +65,38 @@ export const floatPost = (endpoint:'timeoffs', method: 'post' | 'delete', payloa
 
     let url = "https://api.float.com/v3/" + endpoint
 
-    if (deleteID) {
-        url = url + "/" + String(deleteID)
-        if (deleteID && payloadData) {
-            throw new Error("Error in Float Update, cant include both Payload and Delete")
+    const floatResponse = UrlFetchApp.fetch(url, floatRequestOptions())
+
+    const rawResponse: Array<any> = JSON.parse(floatResponse.getContentText())
+
+    if (!isFloatHolidays(rawResponse)) {
+        throw new Error("Error in creating Float Response")
+    }
+    return rawResponse
+}
+
+export const floatDelete = (endpoint:'timeoffs', method:  'delete',  deleteID: number) :FloatHolidays=> {
+
+    const floatHeaders = () => {
+        return {
+            accept: "application/json",
+            authorization: "Bearer 1483dea8f827bdfaT+0li76ao6d4yRD0apWNGdHtkGv4K2Mu9oT+BeAxCtg="
         }
     }
+
+    const floatRequestOptions = (): URLFetchRequestOptions => ({
+        method: method,
+        headers: floatHeaders(),
+        muteHttpExceptions: true,
+    })
+
+    let url = "https://api.float.com/v3/" + endpoint + "/" + String(deleteID)
 
     const floatResponse = UrlFetchApp.fetch(url, floatRequestOptions())
 
     const rawResponse: Array<any> = JSON.parse(floatResponse.getContentText())
 
-    if (!isFloatChanges(rawResponse)) {
+    if (!isFloatHolidays(rawResponse)) {
         throw new Error("Error in creating Float Response")
     }
     return rawResponse
