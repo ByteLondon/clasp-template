@@ -54,7 +54,6 @@ const getFloatPeopleIds = (): Map<string, string> => {
 
 const matchFloatToPeople = (employeesNoFloatID:Array<Employee>,floatIDMap: Map<string, string>): Array<Employee> => {
 
-
     const filteredEmployeesWithId =  employeesNoFloatID.flatMap((emp: Employee) => {
         const tempFloatID = floatIDMap.get(emp.email)
         if (tempFloatID) {
