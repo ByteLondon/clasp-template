@@ -31,7 +31,6 @@ export const bobRequest = (endpoint: 'people' | 'changes', method: 'get' | 'post
         case "people":
             url = urlBase + "people?showInactive=true"
             response = bobURLRequest(url, bobRequest()).employees
-            console.log(response[0])
             if (!isBobPeopleArray(response)) {
                 throw new Error("Bob People request Failed or is Corrupted")
             }
