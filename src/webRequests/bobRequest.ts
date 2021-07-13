@@ -1,6 +1,6 @@
 import URLFetchRequestOptions = GoogleAppsScript.URL_Fetch.URLFetchRequestOptions;
 import {isBobPeopleArray} from "../types/BobPeopleType";
-// import {isBobChangesArray} from "../types/ChangeType";
+import {isBobHolidaysArray} from "../types/BobHoliday";
 
 export const bobRequest = (endpoint: 'people' | 'changes', method: 'get' | 'post', date?: string) : Array<any> => {
 
@@ -37,10 +37,13 @@ export const bobRequest = (endpoint: 'people' | 'changes', method: 'get' | 'post
             break
         case "changes":
             url = urlBase + "/timeoff/requests/changes" + "?since=" + date
+            console.log(url)
             response = bobURLRequest(url, bobRequest()).changes
-            // if (!isBobChangesArray(response)) {
-            //     throw new Error("Bob Changes request Failed or is Corrupted")
-            // }
+            console.log(response)
+
+            if (!isBobHolidaysArray(response)) {
+                throw new Error("Bob Changes request Failed or is Corrupted")
+            }
             break
         default:
             throw new Error("Please input a correct endpoint")
