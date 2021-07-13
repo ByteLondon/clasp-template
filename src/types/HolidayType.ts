@@ -1,11 +1,9 @@
-import {Is, isArray, isBoolean, isNumber, isString, isStruct} from "../helper/guards";
+import {Is, isArray, isNumber, isString, isStruct} from "../helper/guards";
 
 export type Holidays = {
     tableID: number,
     holidayType: string, // from Bob
     employeeEmail:string, // from Bob
-    bobID:string,
-    floatID:string,
     bobRequestId:number, // from Bob
     bobPolicy:string, // from Bob
     startDate:string, // from Bob
@@ -21,8 +19,6 @@ export const isHolidays: Is<Holidays> = isStruct({
     tableID: isNumber,
     holidayType: isString, // from Bob
     employeeEmail:isString, // from Bob
-    bobID:isString,
-    floatID:isString,
     bobRequestId:isNumber, // from Bob
     bobPolicy:isString, // from Bob
     startDate:isString, // from Bob
@@ -36,7 +32,21 @@ export const isHolidays: Is<Holidays> = isStruct({
 
 export const isHolidaysArray: Is<Array<Holidays>> = isArray(isHolidays)
 
-export type HolidaysBeforeFloat = Omit<Holidays, "tableID" | "floatRequestStartID" | "floatRequestBodyID"| "floatRequestEndID">
+export type HolidaysBeforeFloat = {
+    holidayType: string, // from Bob
+    employeeEmail:string, // from Bob
+    bobID:string,
+    floatID:string,
+    bobRequestId:number, // from Bob
+    bobPolicy:string, // from Bob
+    floatPolicy:number, // from Process
+    startDate:string, // from Bob
+    startPortion:string, // from Bob
+    endDate:string, // from Bob
+    endPortion:string, // from Bob
+    bobId: string, // from Employee
+    floatId: string // from Employee
+}
 
 export const isHolidaysBeforeFloat: Is<HolidaysBeforeFloat> = isStruct({
     holidayType: isString, // from Bob
@@ -50,7 +60,6 @@ export const isHolidaysBeforeFloat: Is<HolidaysBeforeFloat> = isStruct({
     startPortion:isString, // from Bob
     endDate:isString, // from Bob
     endPortion:isString, // from Bob
-    fullDaysOnly:isBoolean, // from Process
     bobId: isString, // from Employee
     floatId: isString // from Employee
 })
