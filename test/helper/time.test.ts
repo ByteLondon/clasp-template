@@ -1,10 +1,5 @@
 import {expect} from 'chai'
 import {dateCalculator, dateDaysAgo, getNumberOfDays} from "../../src/helper/time";
-import * as GasStubs from "../gasStubs";
-
-GasStubs.UrlFetchApp.addResponses({
-    'https://api.hibob.com/v1/people?showInactive=true': JSON.stringify({ employees: [] }),
-})
 
 describe('utils', () => {
     describe('getNumberOfDays', () => {
