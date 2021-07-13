@@ -1,8 +1,8 @@
 import URLFetchRequestOptions = GoogleAppsScript.URL_Fetch.URLFetchRequestOptions;
-import {isNumber} from "../helper/guards";
 import {FloatPayload} from "../types/FloatPayload";
 import {FloatChanges, isFloatChanges} from "../types/ChangeType";
 import {isFloatHeaders} from "../types/FloatHeadersType";
+import {isFloatPeopleRawArray} from "../types/FloatPeopleType";
 
 export const floatRequest = (endpoint:'people' | 'changes', method: 'get')=> {
 
@@ -33,14 +33,17 @@ export const floatRequest = (endpoint:'people' | 'changes', method: 'get')=> {
 
     const rawResponse: Array<any> = JSON.parse(floatResponse.getContentText())
 
-    if(!isNumber(totalPages)){
-        throw new Error("Request failed")
-    } else if (totalPages>1){
+    if(totalPages>1){
         for (let i = 2; i <= totalPages; i++) {
             const floatResponse = UrlFetchApp.fetch(url, floatRequestOptions(i))
-            rawResponse.push(JSON.parse(floatResponse.getContentText()))
+            rawResponse.push(...JSON.parse(floatResponse.getContentText()))
         }
     }
+
+    if (!isFloatPeopleRawArray(rawResponse)) {
+        throw new Error("Float People Array Corrupt or Missing after Parsing")
+    }
+
     return rawResponse
 }
 
