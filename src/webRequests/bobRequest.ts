@@ -39,7 +39,6 @@ export const bobRequest = (endpoint: 'people' | 'changes', method: 'get' | 'post
             url = urlBase + "/timeoff/requests/changes" + "?since=" + date
             console.log(url)
             response = bobURLRequest(url, bobRequest()).changes
-            console.log(response)
 
             if (!isBobHolidaysArray(response)) {
                 throw new Error("Bob Changes request Failed or is Corrupted")

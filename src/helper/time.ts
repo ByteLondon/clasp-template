@@ -1,5 +1,14 @@
-export const dateDaysAgo = (days:number):string => {
-    const now = new Date()
+import {isNull} from "./guards";
+
+
+export const dateDaysAgo = (days:number, date:string|null = null):string => {
+    let now
+    if(isNull(date)){
+        now = new Date()
+    } else{
+        now = new Date(date)
+    }
+
     const millisPerDay = 1000 * 60 * 60 * 24
     const targetDateRaw = new Date(now.getTime() - (millisPerDay*days));
     const targetDateNoHours = Utilities.formatDate(targetDateRaw, 'Europe/London', 'yyyy-MM-dd')

@@ -1,7 +1,12 @@
 import {expect} from 'chai'
 import {dateCalculator, dateDaysAgo, getNumberOfDays} from "../../src/helper/time";
+import * as GasStubs from "../gasStubs";
 
-describe('utils', () => {
+GasStubs.UrlFetchApp.addResponses({
+    'https://api.float.com/v3/people': {content: "content" ,headers: {}}
+})
+
+describe('time', () => {
     describe('getNumberOfDays', () => {
         it('Should return 2 ' ,() => {
             const func = getNumberOfDays
@@ -70,13 +75,15 @@ describe('utils', () => {
         it('Should Date Two days ago', () => {
             const func = dateDaysAgo
             const change = 2
-            expect(func(change)).to.equal('2021-07-10T01:07:00.000+0100')
+            const date = "2021-07-12"
+            expect(func(change,date)).to.equal('2021-07-10T01:07:00.000+0100')
         })
 
         it('Should return Today', () => {
             const func = dateDaysAgo
             const change = 0
-            expect(func(change)).to.equal('2021-07-12T01:07:00.000+0100')
+            const date = "2021-07-12"
+            expect(func(change,date)).to.equal('2021-07-12T01:07:00.000+0100')
         })
     })
 })

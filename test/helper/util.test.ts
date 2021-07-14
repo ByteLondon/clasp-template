@@ -3,6 +3,7 @@ import {getFirstEmptyRow} from "../../src/helper/util";
 import {requestTypeDecoder} from "../../src/helper/util";
 
 
+
 describe('utils', () => {
     describe('requestTypeDecoder', () => {
         it('should return correct Float ID', () => {
