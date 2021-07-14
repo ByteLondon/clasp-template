@@ -3,7 +3,7 @@ import {requestTypeDecoder} from "./util";
 import {floatPost} from "../webRequests/floatRequests";
 import {FloatPayloadType} from "../types/FloatPayloadType";
 import {dateCalculator, getNumberOfDays} from "./time";
-import {FloatHolidays, HolidaysIDFromFloat} from "../types/FloatHolidaysType";
+import {FloatHolidays, HolidaysIDFromFloat, isHolidaysIDFromFloat} from "../types/FloatHolidaysType";
 
 const floatFullDayRequest = (holiday: HolidaysBeforeFloat): FloatHolidays => {
     const payload: FloatPayloadType = {
@@ -75,6 +75,10 @@ export const floatChangeSplitter = (holidaysToUpdateOriginal: HolidaysBeforeFloa
     }
 
     holidayIds.floatHolidaysBodyID=floatFullDayRequest(holidaysToUpdate).timeoff_id
+
+    if(!(isHolidaysIDFromFloat(holidayIds))){
+        throw new Error ("Failed to upload changes to Float")
+    }
 
     return holidayIds
 }
