@@ -8,7 +8,8 @@ import Sheet = GoogleAppsScript.Spreadsheet.Sheet;
 
 const getAndFilterEmployeesNoFloatID = (peopleSheet:Sheet): Array<Employee> => {
 
-    const peopleDataRaw = peopleSheet.getRange(2, 1, getFirstEmptyRow(peopleSheet) - 1, 8).getValues()
+    const peopleDataRaw = peopleSheet.getRange(2, 1, getFirstEmptyRow(peopleSheet) - 2, 8).getValues()
+
 
     const employeeArray: Array<Employee> = peopleDataRaw.flatMap(([tableID, firstName, lastName, startDate, location, email, bobID, floatID]: Array<string | number>) => {
         if (floatID==="") {
@@ -24,8 +25,8 @@ const getAndFilterEmployeesNoFloatID = (peopleSheet:Sheet): Array<Employee> => {
             }
             if (isEmployee(output)) {
                 return output
-            }
-            throw new Error('invalid / corrupt Employee object')
+            } else{
+                throw new Error('invalid / corrupt Employee object')}
         }
         return []
     })
