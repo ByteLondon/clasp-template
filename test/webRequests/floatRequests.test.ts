@@ -20,10 +20,10 @@ describe('floatRequests', () => {
         it('returns array of Employees Float', () => {
 
             const content = JSON.stringify(require("../../src/testing/floatPeople.json"))
-            const headers  = {"X-Pagination-Page-Count": 1}
+            const headers  = {"x-pagination-page-count": "1"}
 
             GasStubs.UrlFetchApp.addResponses({
-                'https://api.float.com/v3/people': ({content: content,headers: headers})
+                'https://api.float.com/v3/people?per-page=200&page=1': ({content: content,headers: headers})
             })
 
             const func = floatRequests
@@ -37,10 +37,12 @@ describe('floatRequests', () => {
         it('returns array of Employees Float when 3 pages', () => {
 
             const content = JSON.stringify(require("../../src/testing/floatPeopleSmall.json"))
-            const headers  = {"X-Pagination-Page-Count": 3}
+            const headers  = {"x-pagination-page-count": "3"}
 
             GasStubs.UrlFetchApp.addResponses({
-                'https://api.float.com/v3/people': ({content: content,headers: headers})
+                'https://api.float.com/v3/people?per-page=200&page=1': ({content: content,headers: headers}),
+                'https://api.float.com/v3/people?per-page=200&page=2': ({content: content,headers: headers}),
+                'https://api.float.com/v3/people?per-page=200&page=3': ({content: content,headers: headers})
             })
 
             const func = floatRequests
