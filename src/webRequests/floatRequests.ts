@@ -4,24 +4,22 @@ import {isFloatHeaders} from "../types/FloatHeadersType";
 import {isFloatPeopleRawArray} from "../types/FloatPeopleType";
 import {FloatHolidays, isFloatHolidays} from "../types/FloatHolidaysType";
 
-export const floatRequests = (endpoint:'people' | 'changes', method: 'get')=> {
+export const floatRequests = (endpoint:'people', method: 'get')=> {
 
-    const floatHeaders = (page: number) => { return {
+    const floatHeaders = () => { return {
         accept: "application/json",
-        authorization: "Bearer 1483dea8f827bdfaT+0li76ao6d4yRD0apWNGdHtkGv4K2Mu9oT+BeAxCtg=",
-        page: String(page),
-        'per-page': String(endpoint === 'people' && 200)
+        authorization: "Bearer 1483dea8f827bdfaT+0li76ao6d4yRD0apWNGdHtkGv4K2Mu9oT+BeAxCtg="
     }}
 
-     const floatRequestOptions = (page: number): URLFetchRequestOptions => ({
+     const floatRequestOptions = (): URLFetchRequestOptions => ({
         method: method,
-        headers: floatHeaders(page),
+        headers: floatHeaders(),
         muteHttpExceptions: true
     })
 
-    const url = "https://api.float.com/v3/" + endpoint
+    let url = "https://api.float.com/v3/" + endpoint + "?per-page=200&page="
 
-    const floatResponse = UrlFetchApp.fetch(url, floatRequestOptions(1))
+    const floatResponse = UrlFetchApp.fetch(url+1, floatRequestOptions())
 
     const requestHeaders = floatResponse.getHeaders()
 
@@ -35,7 +33,7 @@ export const floatRequests = (endpoint:'people' | 'changes', method: 'get')=> {
 
     if(totalPages>1){
         for (let i = 2; i <= totalPages; i++) {
-            const floatResponse = UrlFetchApp.fetch(url, floatRequestOptions(i))
+            const floatResponse = UrlFetchApp.fetch(url+i, floatRequestOptions())
             rawResponse.push(...JSON.parse(floatResponse.getContentText()))
         }
     }

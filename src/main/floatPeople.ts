@@ -79,7 +79,7 @@ const updateFloatIDs = () => {
 
     peopleToUpdate.forEach(function (emp) {
         const tempFloatID = [[emp.floatID]]
-        peopleSheet.getRange(emp.tableID + 1, 8, 1, 1).setValues(tempFloatID)
+        peopleSheet.getRange(emp.tableID , 8, 1, 1).setValues(tempFloatID)
     })
 
 }
