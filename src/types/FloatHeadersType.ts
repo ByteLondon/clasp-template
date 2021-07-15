@@ -1,15 +1,15 @@
-import {Is, isNumber, isOptional, isStruct} from "../helper/guards";
+import {Is, isOptional, isString, isStruct} from "../helper/guards";
 
 export type FloatHeaders = {
-    "X-Pagination-Total-Count"?: number,
-    "X-Pagination-Page-Count": number,
-    "X-Pagination-Current-Page"?: number,
-    "X-Pagination-Per-Page"?: number
+    "x-pagination-total-count"?: string,
+    "x-pagination-page-count": string,
+    "x-pagination-current-page"?: string,
+    "x-pagination-per-page"?: string
 }
 
 export const isFloatHeaders: Is<FloatHeaders> = isStruct({
-    "X-Pagination-Total-Count": isOptional(isNumber),
-    "X-Pagination-Page-Count": isNumber,
-    "X-Pagination-Current-Page": isOptional(isNumber),
-    "X-Pagination-Per-Page": isOptional(isNumber)
+    "x-pagination-total-count": isOptional(isString),
+    "x-pagination-page-count": isString,
+    "x-pagination-current-page": isOptional(isString),
+    "x-pagination-per-page": isOptional(isString)
 })

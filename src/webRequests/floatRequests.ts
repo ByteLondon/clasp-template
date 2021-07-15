@@ -29,7 +29,7 @@ export const floatRequests = (endpoint:'people' | 'changes', method: 'get')=> {
         throw new Error('Error in Float Headders')
     }
 
-    const totalPages:number = requestHeaders["X-Pagination-Page-Count"]
+    const totalPages:number = + requestHeaders["x-pagination-page-count"]
 
     const rawResponse: Array<any> = JSON.parse(floatResponse.getContentText())
 
