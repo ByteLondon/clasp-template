@@ -1,6 +1,6 @@
 import Sheet = GoogleAppsScript.Spreadsheet.Sheet;
 
-export const getSheet = (sheet: "people" | "changes", create: boolean = false): Sheet => {
+export const getSheet = (sheet: "people" | "changes", create: boolean = true): Sheet => {
 
     const mainDocument = SpreadsheetApp.getActiveSpreadsheet()
 
@@ -17,7 +17,7 @@ export const getSheet = (sheet: "people" | "changes", create: boolean = false): 
         switch (sheet) {
             case "people":
                 colNames.push(
-                    ["TableID", "First Name", "Last Name", "Start Date", "Location", "Email", "Float ID"]
+                    ["TableID", "First Name", "Last Name", "Start Date", "Location", "Email", "Bob ID","Float ID"]
                 )
                 break
             case "changes":
