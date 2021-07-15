@@ -58,7 +58,7 @@ const filterPeopleAlreadyInSheet = (ArrEmp: Array<EmployeeFromBob>, dataSheet: S
             emp.lastName,
             emp.startDate,
             emp.location,
-            emp.email,
+            emp.email.toLocaleLowerCase(),
             emp.bobID
         ]
     })

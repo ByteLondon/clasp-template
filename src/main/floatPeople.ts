@@ -40,7 +40,7 @@ const getFloatPeopleIds = (): Map<string, string> => {
     const floatPeopleFiltered: Array<FloatPeople> = floatPeopleRaw.flatMap((emp  ) => {
         if (isString(emp.email)) {
             return {
-                email: emp.email,
+                email: emp.email.toLocaleLowerCase(),
                 people_id: String(emp.people_id)
             }
         }
