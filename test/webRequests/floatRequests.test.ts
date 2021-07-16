@@ -1,6 +1,6 @@
 import {expect} from 'chai'
 import * as GasStubs from "../gasStubs";
-import {floatPost, floatRequests} from "../../src/webRequests/floatRequests";
+import {floatPost, floatGet, floatDelete} from "../../src/webRequests/floatRequests";
 import {FloatPayloadType} from "../../src/types/FloatPayloadType";
 
 
@@ -26,7 +26,7 @@ describe('floatRequests', () => {
                 'https://api.float.com/v3/people?per-page=200&page=1': ({content: content,headers: headers})
             })
 
-            const func = floatRequests
+            const func = floatGet
             const endpoint = 'people'
             const method = "get"
             const expected = require("../../src/testing/floatPeople.json")
@@ -45,7 +45,7 @@ describe('floatRequests', () => {
                 'https://api.float.com/v3/people?per-page=200&page=3': ({content: content,headers: headers})
             })
 
-            const func = floatRequests
+            const func = floatGet
             const endpoint = 'people'
             const method = "get"
             const expected = require("../../src/testing/floatPeopleSmall.json").length*3
@@ -62,7 +62,7 @@ describe('floatRequests', () => {
                 'https://api.float.com/v3/people': ({content: content,headers: headers})
             })
 
-            const func = floatRequests
+            const func = floatGet
             const endpoint = 'people'
             const method = "get"
             expect(() => func(endpoint,method)).to.throw
@@ -77,7 +77,7 @@ describe('floatRequests', () => {
                 'https://api.float.com/v3/people': ({content: content,headers: headers})
             })
 
-            const func = floatRequests
+            const func = floatGet
             const endpoint = 'people'
             const method = "get"
             expect(() => func(endpoint,method)).to.throw
@@ -92,7 +92,7 @@ describe('floatRequests', () => {
                 'https://api.float.com/v3/people': ({content: content,headers: headers})
             })
 
-            const func = floatRequests
+            const func = floatGet
             const endpoint = 'people'
             const method = "get"
             expect(() => func(endpoint,method)).to.throw
@@ -132,6 +132,45 @@ describe('floatRequests', () => {
             const method = "post"
             expect(() => func(endpoint,method,payloadExample)).to.throw
             GasStubs.UrlFetchApp.removeResponse('https://api.float.com/v3/people')
+        })
+
+    })
+    describe('floatDelete', () => {
+
+        it('should delete and return 9999', () => {
+
+            const content = JSON.stringify(require("../../src/testing/floatPeople.json"))
+            const headers  = {"x-pagination-page-count": "1"}
+            const status = 204
+
+            GasStubs.UrlFetchApp.addResponses({
+                'https://api.float.com/v3/timeoffs/10000': ({content: content,headers: headers, response: status})
+            })
+
+            const func = floatDelete
+            const endpoint = 'timeoffs'
+            const method = "delete"
+            const deleteID = 10000
+            const output = func(endpoint,method,deleteID)
+            expect(output).to.equal(9999)
+            GasStubs.UrlFetchApp.removeResponse('https://api.float.com/v3/timeoffs/10000')
+        })
+        it('Should trow an error when data is empty ', () => {
+
+            const content = JSON.stringify(require("../../src/testing/floatPeople.json"))
+            const headers  = {"x-pagination-page-count": "1"}
+            const status = 404
+
+            GasStubs.UrlFetchApp.addResponses({
+                'https://api.float.com/v3/timeoffs/10000': ({content: content,headers: headers, response: status})
+            })
+
+            const func = floatDelete
+            const endpoint = 'timeoffs'
+            const method = "delete"
+            const deleteID = 1000
+            expect(() => func(endpoint,method,deleteID)).to.throw
+            GasStubs.UrlFetchApp.removeResponse('https://api.float.com/v3/timeoffs/10000')
         })
 
     })
