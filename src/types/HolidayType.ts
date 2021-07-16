@@ -1,4 +1,4 @@
-import {Is, isArray, isNumber, isString, isStruct} from "../helper/guards";
+import {Is, isArray, isNumber, isOptional, isString, isStruct} from "../helper/guards";
 
 export type Holidays = {
     tableID: number,
@@ -45,7 +45,10 @@ export type HolidaysBeforeFloat = {
     endDate:string, // from Bob
     endPortion:string, // from Bob
     bobId: string, // from Employee
-    floatId: string // from Employee
+    floatId: string // from Employee,
+    floatRequestStartID?:number, // from Float
+    floatRequestBodyID?:number, // from Float
+    floatRequestEndID?:number, // from Float
 }
 
 export const isHolidaysBeforeFloat: Is<HolidaysBeforeFloat> = isStruct({
@@ -61,7 +64,10 @@ export const isHolidaysBeforeFloat: Is<HolidaysBeforeFloat> = isStruct({
     endDate:isString, // from Bob
     endPortion:isString, // from Bob
     bobId: isString, // from Employee
-    floatId: isString // from Employee
+    floatId: isString, // from Employee,
+    floatRequestStartID:isOptional(isNumber), // from Float
+    floatRequestBodyID:isOptional(isNumber), // from Float
+    floatRequestEndID: isOptional(isNumber), // from Float
 })
 
 export const isHolidaysBeforeFloatArray: Is<Array<HolidaysBeforeFloat>> = isArray(isHolidaysBeforeFloat)

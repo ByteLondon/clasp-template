@@ -1,6 +1,6 @@
 import {HolidaysBeforeFloat} from "../types/HolidayType";
 import {requestTypeDecoder} from "./util";
-import {floatPost} from "../webRequests/floatRequests";
+import {floatDelete, floatPost} from "../webRequests/floatRequests";
 import {FloatPayloadType} from "../types/FloatPayloadType";
 import {dateCalculator, getNumberOfDays} from "./time";
 import {FloatHolidays, HolidaysIDFromFloat, isHolidaysIDFromFloat} from "../types/FloatHolidaysType";
@@ -33,7 +33,23 @@ const floatHalfDayRequest = (holiday: HolidaysBeforeFloat): FloatHolidays => {
     return floatPost('timeoffs', "post", payload)
 }
 
-export const floatChangeSplitter = (holidaysToUpdateOriginal: HolidaysBeforeFloat):HolidaysIDFromFloat => {
+export const floatHolidayDeleter = (holidaysToUpdate: HolidaysBeforeFloat):HolidaysIDFromFloat => {
+    const beforeHoliday = holidaysToUpdate.floatRequestStartID
+    const bodyHoliday = holidaysToUpdate.floatRequestBodyID
+    const afterHoliday = holidaysToUpdate.floatRequestEndID
+
+    floatDelete("timeoffs","delete",0)
+
+    return  {
+        bobID: holidaysToUpdate.bobRequestId,
+        floatHolidaysStartID: (beforeHoliday ? floatDelete("timeoffs","delete",beforeHoliday):0),
+        floatHolidaysBodyID: (bodyHoliday ? floatDelete("timeoffs","delete",bodyHoliday):0),
+        floatHolidaysEndID: (afterHoliday ? floatDelete("timeoffs","delete",afterHoliday):0)
+    }
+}
+
+
+export const floatHolidaySplitter = (holidaysToUpdateOriginal: HolidaysBeforeFloat):HolidaysIDFromFloat => {
 
     const holidaysToUpdate = JSON.parse(JSON.stringify(holidaysToUpdateOriginal))
 
@@ -82,3 +98,5 @@ export const floatChangeSplitter = (holidaysToUpdateOriginal: HolidaysBeforeFloa
 
     return holidayIds
 }
+
+

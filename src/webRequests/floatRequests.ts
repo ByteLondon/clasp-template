@@ -4,7 +4,7 @@ import {isFloatHeaders} from "../types/FloatHeadersType";
 import {isFloatPeopleRawArray} from "../types/FloatPeopleType";
 import {FloatHolidays, isFloatHolidays} from "../types/FloatHolidaysType";
 
-export const floatRequests = (endpoint:'people', method: 'get')=> {
+export const floatGet = (endpoint:'people', method: 'get')=> {
 
     const floatHeaders = () => { return {
         accept: "application/json",
@@ -45,7 +45,7 @@ export const floatRequests = (endpoint:'people', method: 'get')=> {
     return rawResponse
 }
 
-export const floatPost = (endpoint:'timeoffs', method: 'post' | 'delete', payloadData:FloatPayloadType) :FloatHolidays=> {
+export const floatPost = (endpoint:'timeoffs', method: 'post' , payloadData:FloatPayloadType) :FloatHolidays=> {
 
     const floatHeaders = () => {
         return {
@@ -73,7 +73,7 @@ export const floatPost = (endpoint:'timeoffs', method: 'post' | 'delete', payloa
     return rawResponse
 }
 
-export const floatDelete = (endpoint:'timeoffs', method:  'delete',  deleteID: number) :FloatHolidays=> {
+export const floatDelete = (endpoint:'timeoffs', method:  'delete',  deleteID: number):number => {
 
     const floatHeaders = () => {
         return {
@@ -92,10 +92,11 @@ export const floatDelete = (endpoint:'timeoffs', method:  'delete',  deleteID: n
 
     const floatResponse = UrlFetchApp.fetch(url, floatRequestOptions())
 
-    const rawResponse: Array<any> = JSON.parse(floatResponse.getContentText())
+    const responseCode: number = floatResponse.getResponseCode()
 
-    if (!isFloatHolidays(rawResponse)) {
-        throw new Error("Error in creating Float Response")
+    if (!(responseCode===204)) {
+        throw new Error("Error in Deleting holiday from Float")
     }
-    return rawResponse
+
+    return 9999
 }

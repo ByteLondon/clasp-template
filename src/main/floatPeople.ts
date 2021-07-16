@@ -1,6 +1,6 @@
 import {getFirstEmptyRow} from "../helper/util";
 import {Employee, isEmployee, isEmployeeArray} from "../types/EmployeeType";
-import {floatRequests} from "../webRequests/floatRequests";
+import {floatGet} from "../webRequests/floatRequests";
 import {getSheet} from "../helper/getSheet";
 import {FloatPeople, FloatPeopleRaw} from "../types/FloatPeopleType"
 import {isString} from "../helper/guards";
@@ -35,7 +35,7 @@ const getAndFilterEmployeesNoFloatID = (peopleSheet:Sheet): Array<Employee> => {
 }
 
 const getFloatPeopleIds = (): Map<string, string> => {
-    const floatPeopleRaw: Array<FloatPeopleRaw> = floatRequests("people", "get")
+    const floatPeopleRaw: Array<FloatPeopleRaw> = floatGet("people", "get")
 
     const floatPeopleFiltered: Array<FloatPeople> = floatPeopleRaw.flatMap((emp  ) => {
         if (isString(emp.email)) {

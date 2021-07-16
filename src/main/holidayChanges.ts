@@ -1,6 +1,5 @@
 import {getFirstEmptyRow, requestTypeDecoder} from "../helper/util";
 import {Employee, isEmployee} from "../types/EmployeeType";
-import { isString} from "../helper/guards";
 import {
     Holidays,
     HolidaysBeforeFloat,
@@ -8,12 +7,13 @@ import {
 } from "../types/HolidayType";
 import {bobRequest} from "../webRequests/bobRequest";
 import {dateDaysAgo} from "../helper/time";
-import {floatChangeSplitter} from "../helper/addChangesToFloat";
+import {floatHolidayDeleter, floatHolidaySplitter} from "../helper/addChangesToFloat";
 import {isHolidays} from "../types/HolidayType";
 import Sheet = GoogleAppsScript.Spreadsheet.Sheet;
 
-import {BobHolidays} from "../types/BobHoliday";
+import {BobHolidays,  isBobHolidaysArray} from "../types/BobHoliday";
 import {getSheet} from "../helper/getSheet";
+
 
 const getPeopleMap = (peopleSheet:Sheet): Map<string, Employee> => {
 
@@ -43,59 +43,89 @@ const getPeopleMap = (peopleSheet:Sheet): Map<string, Employee> => {
     }, new Map());
 }
 
-const getMapOfHolidaysInSheet = (holidaysSheet:Sheet): Map<string,string> => {
-    /// NEED TO CHECK THIS COL
+const getMapOfHolidaysInSheet = (holidaysSheet:Sheet): Map<number, Holidays> => {
 
-    const holidaysIDSInSheetRaw : Array<Array<string>> = holidaysSheet.getRange(1, 3, getFirstEmptyRow(holidaysSheet) - 1, 1).getValues()
+    const holidaysIDSInSheetRaw : Array<Array<string>> = holidaysSheet.getRange(1, 1, getFirstEmptyRow(holidaysSheet) - 1, 8).getValues()
 
-    const holidaysInSheetArray :Array<string> = holidaysIDSInSheetRaw.map(([id]:Array<string>) => id)
-
-    return holidaysInSheetArray.reduce((acc: Map<string, string>, curr: string) => {
-        if(!isString(curr)){
-            throw new Error ("Id Key missing or Corrupt")
+    const holidaysInSheetArray: Array<Holidays> = holidaysIDSInSheetRaw.map(([tableID, holidayType, employeeEmail, bobRequestId, bobPolicy, startDate, startPortion, endDate, endPortion, floatRequestStartID, floatRequestBodyID, floatRequestEndID]: Array<string | number>) => {
+        const output = {
+            tableID: tableID,
+            holidayType: holidayType,
+            employeeEmail : employeeEmail,
+            bobRequestId: bobRequestId,
+            bobPolicy: bobPolicy,
+            startDate: startDate,
+            startPortion: startPortion,
+            endDate: endDate,
+            endPortion: endPortion,
+            floatRequestStartID: floatRequestStartID,
+            floatRequestBodyID: floatRequestBodyID,
+            floatRequestEndID: floatRequestEndID,
         }
-        acc.set(curr, curr)
+        if (isHolidays(output)) {
+            return output
+        }
+        throw new Error('invalid / corrupt Employee object')
+    })
+
+    return holidaysInSheetArray.reduce((acc: Map<number, Holidays>, curr: Holidays) => {
+        acc.set(curr.bobRequestId, curr)
         return acc
     }, new Map())
 }
 
-const getAndFilterHolidayRequests = (holidaysInSheetMap: Map<string,string>, holidaysFromBobs: Array<BobHolidays>): Array<BobHolidays> => {
+const getAndFilterHolidayRequests = (holidaysInSheetMap: Map<number, Holidays>, holidaysFromBobs: Array<BobHolidays>): Array<BobHolidays> => {
 
-    const checkIfNotInMap = (holidaysFromBobs: BobHolidays): boolean => {
-        return !holidaysInSheetMap.has(String(holidaysFromBobs.requestId))
+    const filterHolidaysByTypeAndMap = (inMap :boolean, type: "Created" | "Deleted") => (holidaysFromBobs: BobHolidays): boolean => {
+        const typeMatch:boolean = holidaysFromBobs.changeType === type
+        const mapMatchRaw:boolean = holidaysInSheetMap.has(holidaysFromBobs.requestId)
+        const mapMatch:boolean  =  inMap ? mapMatchRaw : !mapMatchRaw
+        return typeMatch && mapMatch
     }
 
-    const filteredHolidays =  holidaysFromBobs.filter(checkIfNotInMap)
+    const filteredCreatedHolidays =  holidaysFromBobs.filter(filterHolidaysByTypeAndMap(false, 'Created'))
+    const filteredDeletedHolidays =  holidaysFromBobs.filter(filterHolidaysByTypeAndMap(true, 'Deleted'))
 
-    if(filteredHolidays.length<1){
+    const holidaysToUpdate = filteredCreatedHolidays.concat(filteredDeletedHolidays)
+
+    if(!isBobHolidaysArray(holidaysToUpdate)){
+        throw new Error ("Error creating Bob Holiday Object")
+    }
+
+    if(holidaysToUpdate.length<1){
         throw new Error ("No new holidays to update")
     }
 
-    return filteredHolidays
+    return holidaysToUpdate
 }
 
-const createHolidayObjectArr =(filteredHolidays:Array<BobHolidays>, peopleMap: Map<string, Employee>):Array<HolidaysBeforeFloat> =>{
+const createHolidayObjectArr =(filteredHolidays:Array<BobHolidays>, peopleMap: Map<string, Employee>, holidaysInSheetMap: Map<number, Holidays>):Array<HolidaysBeforeFloat> =>{
 
-    return filteredHolidays.map((change:BobHolidays) =>{
-        const output = {
-            holidayType: change.changeType,
-            employeeEmail:change.employeeEmail,
-            bobRequestId: change.requestId,
-            bobPolicy:change.policyTypeDisplayName,
-            floatPolicy: requestTypeDecoder(change.policyTypeDisplayName),
-            startDate: change.startDate,
-            startPortion:change.startPortion,
-            endDate: change.endDate,
-            endPortion: change.endPortion,
-            fullDaysOnly: (change.startPortion === "all_day" && change.endPortion === "all_day") ,
-            bobId: change.employeeId,
-            floatId: peopleMap.get(change.employeeId)
+    return filteredHolidays.flatMap((change:BobHolidays) =>{
+        const floatID:string|undefined = peopleMap.get(change.employeeId)?.floatID
+        if(floatID){
+            const output = {
+                holidayType: change.changeType,
+                employeeEmail:change.employeeEmail,
+                bobRequestId: change.requestId,
+                bobPolicy:change.policyTypeDisplayName,
+                floatPolicy: requestTypeDecoder(change.policyTypeDisplayName),
+                startDate: change.startDate,
+                startPortion:change.startPortion,
+                endDate: change.endDate,
+                endPortion: change.endPortion,
+                fullDaysOnly: (change.startPortion === "all_day" && change.endPortion === "all_day") ,
+                bobId: change.employeeId,
+                floatId: floatID,
+                floatRequestStartID: ( change.changeType === "Deleted"? holidaysInSheetMap.get(change.requestId)?.floatRequestStartID : undefined),
+                floatRequestBodyID: ( change.changeType === "Deleted"? holidaysInSheetMap.get(change.requestId)?.floatRequestBodyID : undefined),
+                floatRequestEndID: ( change.changeType === "Deleted"? holidaysInSheetMap.get(change.requestId)?.floatRequestEndID : undefined),
+            }
+            if (isHolidaysBeforeFloat(output)) {
+                return output
+            }
         }
-        if (isHolidaysBeforeFloat(output)) {
-            return output
-        } else{
-            throw new Error("Error in processing Filtered Changes")
-        }
+            return []
     })
 }
 
@@ -105,7 +135,7 @@ const addToFloat = (changesToUpdate: Array<HolidaysBeforeFloat>, holidaysSheet:S
 
     return changesToUpdate.map((holidays:HolidaysBeforeFloat) =>{
 
-        const holidayIds =  floatChangeSplitter(holidays)
+        const holidayIds =  holidays.holidayType === "Created"? floatHolidaySplitter(holidays) : floatHolidayDeleter(holidays)
 
         const output = {
             tableID: lastRow,
@@ -139,7 +169,7 @@ const updateGoogleWithChanges = () =>  {
     const holidayMap = getMapOfHolidaysInSheet(holidaySheet)
     const holidaysFromBobs = bobRequest("changes", "get",dateDaysAgo(1))
     const filteredHolidays = getAndFilterHolidayRequests(holidayMap,holidaysFromBobs)
-    const holidaysToUpdate  = createHolidayObjectArr(filteredHolidays,peopleMap)
+    const holidaysToUpdate = createHolidayObjectArr(filteredHolidays,peopleMap,holidayMap)
     const addedToFloat = addToFloat(holidaysToUpdate,holidaySheet)
 
     const formattedHolidaysToAdd = addedToFloat.map((hols: Holidays) => {
