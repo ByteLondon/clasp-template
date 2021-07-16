@@ -23,8 +23,6 @@ export const floatGet = (endpoint:'people', method: 'get')=> {
 
     const requestHeaders = floatResponse.getHeaders()
 
-    console.log(requestHeaders)
-
     if(!isFloatHeaders(requestHeaders)){
         throw new Error('Error in Float Headders')
     }
@@ -91,10 +89,12 @@ export const floatDelete = (endpoint:'timeoffs', method:  'delete',  deleteID: n
     })
 
     let url = "https://api.float.com/v3/" + endpoint + "/" + String(deleteID)
-
+    console.log(String(url))
     const floatResponse = UrlFetchApp.fetch(url, floatRequestOptions())
 
     const responseCode: number = floatResponse.getResponseCode()
+
+    console.log(String(responseCode))
 
     if (!(responseCode===204)) {
         throw new Error("Error in Deleting holiday from Float")

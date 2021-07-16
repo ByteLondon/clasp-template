@@ -4,6 +4,7 @@ import URLFetchRequest = GoogleAppsScript.URL_Fetch.URLFetchRequest;
 type FakeResponse = {
     content: string
     headers?: object
+    response?: number
 }
 
 /**
@@ -20,6 +21,9 @@ global.UrlFetchApp = {
         },
         getHeaders: (): object | undefined => {
             return responses[url]?.headers ? responses[url].headers : {}
+        },
+        getResponseCode: (): number | undefined => {
+            return responses[url]?.response ? responses[url].response : undefined
         }
     } as HTTPResponse),
     fetchAll: () => {

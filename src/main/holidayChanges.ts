@@ -65,7 +65,7 @@ const getMapOfHolidaysInSheet = (holidaysSheet:Sheet): Map<number, Holidays> => 
         if (isHolidays(output)) {
             return output
         }
-        throw new Error('invalid / corrupt Employee object')
+        throw new Error('invalid / corrupt Holiday object for Map')
     })
 
     return holidaysInSheetArray.reduce((acc: Map<number, Holidays>, curr: Holidays) => {
