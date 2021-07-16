@@ -1,13 +1,13 @@
 import {Is, isArray, isNumber,  isString, isStruct} from "../helper/guards";
 
 export type HolidaysIDFromFloat = {
-    bobID: number,
+    bobHolidayID: number,
     floatHolidaysStartID: number,
     floatHolidaysBodyID: number,
     floatHolidaysEndID: number
 }
 export const isHolidaysIDFromFloat: Is<HolidaysIDFromFloat> = isStruct({
-    bobID: isNumber,
+    bobHolidayID: isNumber,
     floatHolidaysStartID: isNumber, // from Float
     floatHolidaysBodyID: isNumber, // from Float
     floatHolidaysEndID: isNumber // from Float

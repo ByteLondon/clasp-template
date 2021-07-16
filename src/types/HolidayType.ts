@@ -35,8 +35,8 @@ export const isHolidaysArray: Is<Array<Holidays>> = isArray(isHolidays)
 export type HolidaysBeforeFloat = {
     holidayType: string, // from Bob
     employeeEmail:string, // from Bob
-    bobID:string,
-    floatID:string,
+    bobPersonId:string,
+    floatPersonId:string,
     bobRequestId:number, // from Bob
     bobPolicy:string, // from Bob
     floatPolicy:number, // from Process
@@ -44,8 +44,6 @@ export type HolidaysBeforeFloat = {
     startPortion:string, // from Bob
     endDate:string, // from Bob
     endPortion:string, // from Bob
-    bobId: string, // from Employee
-    floatId: string // from Employee,
     floatRequestStartID?:number, // from Float
     floatRequestBodyID?:number, // from Float
     floatRequestEndID?:number, // from Float
@@ -54,8 +52,8 @@ export type HolidaysBeforeFloat = {
 export const isHolidaysBeforeFloat: Is<HolidaysBeforeFloat> = isStruct({
     holidayType: isString, // from Bob
     employeeEmail:isString, // from Bob
-    bobID:isString,
-    floatID:isString,
+    bobPersonId:isString,
+    floatPersonId:isString,
     bobRequestId:isNumber, // from Bob
     bobPolicy:isString, // from Bob
     floatPolicy:isNumber, // from Process
@@ -63,8 +61,6 @@ export const isHolidaysBeforeFloat: Is<HolidaysBeforeFloat> = isStruct({
     startPortion:isString, // from Bob
     endDate:isString, // from Bob
     endPortion:isString, // from Bob
-    bobId: isString, // from Employee
-    floatId: isString, // from Employee,
     floatRequestStartID:isOptional(isNumber), // from Float
     floatRequestBodyID:isOptional(isNumber), // from Float
     floatRequestEndID: isOptional(isNumber), // from Float
