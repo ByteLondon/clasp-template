@@ -23,6 +23,8 @@ export const floatGet = (endpoint:'people', method: 'get')=> {
 
     const requestHeaders = floatResponse.getHeaders()
 
+    console.log(requestHeaders)
+
     if(!isFloatHeaders(requestHeaders)){
         throw new Error('Error in Float Headders')
     }

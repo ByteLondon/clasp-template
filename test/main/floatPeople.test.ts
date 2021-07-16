@@ -1,5 +1,5 @@
 import {expect} from 'chai'
-import FloatPeopleF from '../../src/main/FloatPeople'
+import FloatPeople from '../../src/main/FloatPeople'
 import * as GasStubs from "../gasStubs";
 import Sheet = GoogleAppsScript.Spreadsheet.Sheet;
 import {Employee} from "../../src/types/EmployeeType";
@@ -36,10 +36,10 @@ const fakeSheet = {
 
 
 const content = JSON.stringify(require("../../src/testing/floatPeopleSmall.json"))
-const headers  = {"X-Pagination-Page-Count": 1}
+const headers  = {"x-pagination-page-count": "1"}
 
 GasStubs.UrlFetchApp.addResponses({
-    'https://api.float.com/v3/people': {content: content ,headers: headers}
+    'https://api.float.com/v3/people?per-page=200&page=1': {content: content ,headers: headers}
 })
 
 
@@ -47,7 +47,7 @@ describe('floatPeople', () => {
     describe('getAndFilterEmployeesNoFloatID', () => {
         it('Should get an Array of EmployeesFromBob with one value filtered', () => {
 
-            const func = FloatPeopleF.getAndFilterEmployeesNoFloatID
+            const func = FloatPeople.getAndFilterEmployeesNoFloatID
             const expectedV: Array<Employee> = [
                 {tableID:2,firstName:"Richard",lastName:"Cotes",startDate:"2020-01-01",location:"London",email:"email2@test.com",bobID:"456456",floatID:""},
                 {tableID:3,firstName:"Richard",lastName:"Roche",startDate:"2019-01-01",location:"Berlin",email:"email3@test.com",bobID:"1345546",floatID:""}
@@ -55,7 +55,7 @@ describe('floatPeople', () => {
             expect(func(fakeSheet.Correct as unknown as Sheet)).to.deep.equal(expectedV)
         })
         it('Should get not filter out any employees', () => {
-            const func = FloatPeopleF.getAndFilterEmployeesNoFloatID
+            const func = FloatPeople.getAndFilterEmployeesNoFloatID
             const expectedV: Array<Employee> = [
                 {tableID:1,firstName:"Alejandro",lastName:"Reinel",startDate:"2021-01-01",location:"London",email:"email1@test.com",bobID:"13546",floatID:""},
                 {tableID:2,firstName:"Richard",lastName:"Cotes",startDate:"2020-01-01",location:"London",email:"email2@test.com",bobID:"456456",floatID:""},
@@ -64,7 +64,7 @@ describe('floatPeople', () => {
             expect(func(fakeSheet.AllEmpty as unknown as Sheet)).to.deep.equal(expectedV)
         })
         it('Throw an error when data is not correct type', () => {
-            const func = FloatPeopleF.getAndFilterEmployeesNoFloatID
+            const func = FloatPeople.getAndFilterEmployeesNoFloatID
             expect(() => func(fakeSheet.Incorrect as unknown as Sheet)).to.throw
         })
     })
@@ -75,7 +75,7 @@ describe('floatPeople', () => {
             expectedV.set('email2@test.com', "404512")
             expectedV.set('email1@test.com', "404513")
 
-            const func = FloatPeopleF.getFloatPeopleIds
+            const func = FloatPeople.getFloatPeopleIds
             expect(func()).to.deep.equal(expectedV)
         })
     })
@@ -97,7 +97,7 @@ describe('floatPeople', () => {
                 {tableID:2,firstName:"Richard",lastName:"Cotes",startDate:"2020-01-01",location:"London",email:"email2@test.com",bobID:"456456",floatID:"404512"}
             ]
 
-            const func = FloatPeopleF.matchFloatToPeople
+            const func = FloatPeople.matchFloatToPeople
             expect(func(employees,floatMap)).to.deep.equal(expectedV)
         })
         it('Should Match none of the employees and throw an error  ', () => {
@@ -112,7 +112,7 @@ describe('floatPeople', () => {
             floatMap.set('email2@test.com', "404512")
             floatMap.set('email1@test.com', "404513")
 
-            const func = FloatPeopleF.matchFloatToPeople
+            const func = FloatPeople.matchFloatToPeople
             expect(() => func(employees,floatMap)).to.throw
         })
     })

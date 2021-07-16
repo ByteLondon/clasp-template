@@ -73,5 +73,5 @@ const updateBobPeople = () => {
 }
 
 export default {
-    bobPeople: getSheet, filterPeopleAlreadyInSheet, getAndCleanBobPeople, updateBobPeople, checkIfEmailNotInMap
+    getSheet, filterPeopleAlreadyInSheet, getAndCleanBobPeople, updateBobPeople, checkIfEmailNotInMap
 }

@@ -85,6 +85,6 @@ const updateFloatIDs = () => {
 }
 
 export default {
-    FloatPeopleF: getAndFilterEmployeesNoFloatID, getFloatPeopleIds, matchFloatToPeople, updateFloatIDs
+     getFloatPeopleIds:getFloatPeopleIds, matchFloatToPeople, updateFloatIDs, getAndFilterEmployeesNoFloatID
 }
 

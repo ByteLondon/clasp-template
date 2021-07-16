@@ -1,6 +1,6 @@
 import {expect} from 'chai';
 import * as GasStubs from "../gasStubs";
-import {floatChangeSplitter} from "../../src/helper/addChangesToFloat";
+import {floatHolidaySplitter} from "../../src/helper/addChangesToFloat";
 import {HolidaysBeforeFloat} from "../../src/types/HolidayType";
 
 const content = JSON.stringify(require("../../src/testing/FloatHolidayFullDay.json"))
@@ -36,7 +36,7 @@ describe('addChangesToFloat', () => {
                 "floatHolidaysEndID": 0,
                 "floatHolidaysStartID": 0,
             }
-            const func = floatChangeSplitter
+            const func = floatHolidaySplitter
             expect(func(input)).to.deep.equal(expected)
         })
 
@@ -48,7 +48,7 @@ describe('addChangesToFloat', () => {
                 "floatHolidaysEndID": 6848981,
                 "floatHolidaysStartID": 0,
             }
-            const func = floatChangeSplitter
+            const func = floatHolidaySplitter
             expect(func(input)).to.deep.equal(expected)
         })
 
@@ -60,7 +60,7 @@ describe('addChangesToFloat', () => {
                 "floatHolidaysEndID": 0,
                 "floatHolidaysStartID": 6848981,
             }
-            const func = floatChangeSplitter
+            const func = floatHolidaySplitter
             expect(func(input)).to.deep.equal(expected)
         })
 
@@ -72,13 +72,13 @@ describe('addChangesToFloat', () => {
                 "floatHolidaysEndID": 6848981,
                 "floatHolidaysStartID": 6848981,
             }
-            const func = floatChangeSplitter
+            const func = floatHolidaySplitter
             expect(func(input)).to.deep.equal(expected)
         })
 
         it('Should throw an error if request id cannot be matched' ,() => {
             const input  = fakeHolidaysCreator("afternoon","2020-01-05","morning","Incorrect")
-            const func = floatChangeSplitter
+            const func = floatHolidaySplitter
             expect(() => func(input)).to.throw
         })
     })
