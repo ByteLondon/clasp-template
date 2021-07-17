@@ -12,9 +12,8 @@ const floatFullDayRequest = (holiday: HolidaysBeforeFloat): FloatHolidays => {
         "end_date": holiday.endDate,
         "hours": 7,
         "full_day": 1,
-        "people_ids": [holiday.floatID]
+        "people_ids": [holiday.floatPersonId]
     }
-    console.log("fullDay")
 
     return floatPost('timeoffs', "post", payload)
 }
@@ -27,9 +26,9 @@ const floatHalfDayRequest = (holiday: HolidaysBeforeFloat): FloatHolidays => {
         "start_time": (holiday.startPortion === "afternoon") ? "14:00" : "9:00",
         "hours": 4,
         "full_day": 0,
-        "people_ids": [holiday.floatID]
+        "people_ids": [holiday.floatPersonId]
     }
-    console.log("halfDay")
+
     return floatPost('timeoffs', "post", payload)
 }
 
@@ -38,10 +37,8 @@ export const floatHolidayDeleter = (holidaysToUpdate: HolidaysBeforeFloat):Holid
     const bodyHoliday = holidaysToUpdate.floatRequestBodyID
     const afterHoliday = holidaysToUpdate.floatRequestEndID
 
-    floatDelete("timeoffs","delete",0)
-
     return  {
-        bobID: holidaysToUpdate.bobRequestId,
+        bobHolidayID: holidaysToUpdate.bobRequestId,
         floatHolidaysStartID: (beforeHoliday ? floatDelete("timeoffs","delete",beforeHoliday):0),
         floatHolidaysBodyID: (bodyHoliday ? floatDelete("timeoffs","delete",bodyHoliday):0),
         floatHolidaysEndID: (afterHoliday ? floatDelete("timeoffs","delete",afterHoliday):0)
@@ -56,7 +53,7 @@ export const floatHolidaySplitter = (holidaysToUpdateOriginal: HolidaysBeforeFlo
     const numberOfDays = getNumberOfDays(holidaysToUpdate.startDate, holidaysToUpdate.endDate)
 
     const holidayIds: HolidaysIDFromFloat = {
-        bobID: holidaysToUpdate.bobRequestId,
+        bobHolidayID: holidaysToUpdate.bobRequestId,
         floatHolidaysStartID: 0,
         floatHolidaysBodyID: 0,
         floatHolidaysEndID: 0
