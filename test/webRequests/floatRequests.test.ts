@@ -138,13 +138,8 @@ describe('floatRequests', () => {
     describe('floatDelete', () => {
 
         it('should delete and return 9999', () => {
-
-            const content = JSON.stringify(require("../../src/testing/floatPeople.json"))
-            const headers  = {"x-pagination-page-count": "1"}
-            const status = 204
-
             GasStubs.UrlFetchApp.addResponses({
-                'https://api.float.com/v3/timeoffs/10000': ({content: content,headers: headers, response: status})
+                'https://api.float.com/v3/timeoffs/10000': ({content: "{}",headers: {}, response: 204})
             })
 
             const func = floatDelete
@@ -157,12 +152,8 @@ describe('floatRequests', () => {
         })
         it('Should trow an error when data is empty ', () => {
 
-            const content = JSON.stringify(require("../../src/testing/floatPeople.json"))
-            const headers  = {"x-pagination-page-count": "1"}
-            const status = 404
-
             GasStubs.UrlFetchApp.addResponses({
-                'https://api.float.com/v3/timeoffs/10000': ({content: content,headers: headers, response: status})
+                'https://api.float.com/v3/timeoffs/10000': ({content: "{}",headers: {}, response: 404})
             })
 
             const func = floatDelete

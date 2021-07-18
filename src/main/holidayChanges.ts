@@ -102,11 +102,13 @@ const getAndFilterHolidayRequests = (holidaysInSheetMap: Map<number, Holidays>, 
 const createHolidayObjectArr =(filteredHolidays:Array<BobHolidays>, peopleMap: Map<string, Employee>, holidaysInSheetMap: Map<number, Holidays>):Array<HolidaysBeforeFloat> =>{
 
     return filteredHolidays.flatMap((change:BobHolidays) =>{
-        const floatID:string|undefined = peopleMap.get(change.employeeId)?.floatID
+        const floatID:string|undefined = peopleMap.get(change.employeeEmail)?.floatID
         if(floatID){
             const output = {
                 holidayType: change.changeType,
                 employeeEmail:change.employeeEmail,
+                bobPersonId: change.employeeId,
+                floatPersonId: floatID,
                 bobRequestId: change.requestId,
                 bobPolicy:change.policyTypeDisplayName,
                 floatPolicy: requestTypeDecoder(change.policyTypeDisplayName),
@@ -114,9 +116,6 @@ const createHolidayObjectArr =(filteredHolidays:Array<BobHolidays>, peopleMap: M
                 startPortion:change.startPortion,
                 endDate: change.endDate,
                 endPortion: change.endPortion,
-                fullDaysOnly: (change.startPortion === "all_day" && change.endPortion === "all_day") ,
-                bobId: change.employeeId,
-                floatId: floatID,
                 floatRequestStartID: ( change.changeType === "Deleted"? holidaysInSheetMap.get(change.requestId)?.floatRequestStartID : undefined),
                 floatRequestBodyID: ( change.changeType === "Deleted"? holidaysInSheetMap.get(change.requestId)?.floatRequestBodyID : undefined),
                 floatRequestEndID: ( change.changeType === "Deleted"? holidaysInSheetMap.get(change.requestId)?.floatRequestEndID : undefined),
@@ -192,6 +191,6 @@ const updateGoogleWithChanges = () =>  {
 }
 
 export default {
-    holidayChanges: createHolidayObjectArr,addToFloat, getPeopleMap, getMapOfHolidaysInSheet, getAndFilterHolidayRequests,updateGoogleWithChanges
+     createHolidayObjectArr,addToFloat, getPeopleMap, getMapOfHolidaysInSheet, getAndFilterHolidayRequests,updateGoogleWithChanges
 }
 
