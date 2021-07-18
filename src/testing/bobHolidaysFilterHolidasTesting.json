@@ -1,0 +1,56 @@
+{
+  "changes": [
+    {
+      "changeType": "Created",
+      "employeeId": "2403645128100020949",
+      "employeeDisplayName": "Created also in Map",
+      "employeeEmail": "amanda.julius@bytelondon.com",
+      "requestId": 1111,
+      "policyTypeDisplayName": "Holiday",
+      "startDate": "2021-01-01",
+      "startPortion": "all_day",
+      "endDate": "2021-07-26",
+      "endPortion": "all_day",
+      "type": "days"
+    },
+    {
+      "changeType": "Created",
+      "employeeId": "2240675962884718851",
+      "employeeDisplayName": "Created not in Map",
+      "employeeEmail": "morgan@bytelondon.com",
+      "requestId": 2222,
+      "policyTypeDisplayName": "Holiday",
+      "startDate": "2021-01-01",
+      "startPortion": "all_day",
+      "endDate": "2021-01-01",
+      "endPortion": "all_day",
+      "type": "days"
+    },
+    {
+      "changeType": "Deleted",
+      "employeeId": "2586308094048862865",
+      "employeeDisplayName": "Emma Worth",
+      "employeeEmail": "Deleted also in Map",
+      "requestId": 3333,
+      "policyTypeDisplayName": "Holiday",
+      "startDate": "2021-01-01",
+      "startPortion": "all_day",
+      "endDate": "2021-01-01",
+      "endPortion": "all_day",
+      "type": "days"
+    },
+    {
+      "changeType": "Deleted",
+      "employeeId": "2240674453463761016",
+      "employeeDisplayName": "Deleted not in Map",
+      "employeeEmail": "ellie@bytelondon.com",
+      "requestId": 4444,
+      "policyTypeDisplayName": "Sick",
+      "startDate": "2021-01-01",
+      "startPortion": "all_day",
+      "endDate": "2021-01-01",
+      "endPortion": "all_day",
+      "type": "days"
+    }
+  ]
+}
