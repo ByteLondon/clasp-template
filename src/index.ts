@@ -6,4 +6,4 @@ import bobPeople from '../src/main/bobPeople'
 global.updateBobPeople = bobPeople.updateBobPeople
 
 import holidayChanges from '../src/main/holidayChanges'
-global.holidayChanges = holidayChanges.holidayChanges
+global.holidayChanges = holidayChanges.updateGoogleWithChanges

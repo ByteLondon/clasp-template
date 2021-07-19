@@ -5,7 +5,12 @@ import {isBobHolidaysArray} from "../types/BobHoliday";
 export const bobRequest = (endpoint: 'people' | 'changes', method: 'get' | 'post', date?: string) : Array<any> => {
 
     const bobURLRequest =(url: string, options: URLFetchRequestOptions) => {
-        const bobRaw: string = UrlFetchApp.fetch(url, options).getContentText()
+
+        const encodedURL  = url.replace("+", "%2b")
+        Logger.log(encodedURL)
+        Logger.log(url)
+        const bobRaw: string = UrlFetchApp.fetch(encodedURL, options).getContentText()
+        console.log(bobRaw)
         return JSON.parse(bobRaw)
     }
 
@@ -36,8 +41,8 @@ export const bobRequest = (endpoint: 'people' | 'changes', method: 'get' | 'post
             }
             break
         case "changes":
-            url = urlBase + "/timeoff/requests/changes" + "?since=" + date
-            console.log(url)
+
+            url = urlBase + "timeoff/requests/changes" + "?since=" + date
             response = bobURLRequest(url, bobRequest()).changes
 
             if (!isBobHolidaysArray(response)) {

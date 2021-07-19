@@ -8,7 +8,7 @@ export const getSheet = (sheet: "people" | "changes", create: boolean = true): S
     let peopleSheet: Sheet | null = mainDocument.getSheetByName(sheet)
 
     if (create && !peopleSheet) {
-        mainDocument.insertSheet('People')
+        mainDocument.insertSheet(sheet)
         peopleSheet = mainDocument.getSheetByName(sheet)
         if (!peopleSheet) {
             throw new Error('Error Creating Sheet')

@@ -12,7 +12,7 @@ export const dateDaysAgo = (days:number, date:string|null = null):string => {
     const millisPerDay = 1000 * 60 * 60 * 24
     const targetDateRaw = new Date(now.getTime() - (millisPerDay*days));
     const targetDateNoHours = Utilities.formatDate(targetDateRaw, 'Europe/London', 'yyyy-MM-dd')
-    return  Utilities.formatDate(new Date(targetDateNoHours), 'Europe/London', "yyyy-MM-dd'T'HH:mm:ss.SSSZ")
+    return  Utilities.formatDate(new Date(targetDateNoHours), 'Europe/London', "yyyy-MM-dd'T'HH:mm:ss.SSXXX")
 }
 
 export const getNumberOfDays = (start: string, end: string): number => {
