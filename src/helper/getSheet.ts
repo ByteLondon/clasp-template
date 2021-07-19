@@ -22,7 +22,7 @@ export const getSheet = (sheet: "people" | "changes", create: boolean = true): S
                 break
             case "changes":
                 colNames.push(
-                    ["Table ID", "Change Type", "Employee Email", "Bob Request Id", "Policy Type", "Start Date", "Start Portion", "End Date", "End Portion", "FloatStart", "FloatBody", "FloatEnd"]
+                    ["TableID", "Type", "Email", "Bob RequestId", "Bob Policy", "Start Date", "Start Portion", "End Date", "End Portion", "Float Request Start ID", "Float Request Body ID", "Float Request End ID"]
                 )
                 break
             default:
@@ -38,3 +38,4 @@ export const getSheet = (sheet: "people" | "changes", create: boolean = true): S
 
     return peopleSheet
 }
+

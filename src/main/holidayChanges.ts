@@ -179,6 +179,7 @@ const updateGoogleWithChanges = () =>  {
             hols.bobRequestId,
             hols.bobPolicy,
             hols.startDate,
+            hols.startPortion,
             hols.endDate,
             hols.endPortion,
             hols.floatRequestStartID,
