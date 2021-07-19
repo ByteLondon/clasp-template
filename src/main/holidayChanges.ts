@@ -169,27 +169,26 @@ const updateGoogleWithChanges = () =>  {
     const holidaysFromBobs = bobRequest("changes", "get",dateDaysAgo(1))
     const filteredHolidays = getAndFilterHolidayRequests(holidayMap,holidaysFromBobs)
     const holidaysToUpdate = createHolidayObjectArr(filteredHolidays,peopleMap,holidayMap)
-    console.log(holidaysToUpdate)
-    // const addedToFloat = addToFloat(holidaysToUpdate,holidaySheet)
-    //
-    // const formattedHolidaysToAdd = addedToFloat.map((hols: Holidays) => {
-    //     return [
-    //         hols.tableID,
-    //         hols.holidayType,
-    //         hols.employeeEmail,
-    //         hols.bobRequestId,
-    //         hols.bobPolicy,
-    //         hols.startDate,
-    //         hols.startPortion,
-    //         hols.endDate,
-    //         hols.endPortion,
-    //         hols.floatRequestStartID,
-    //         hols.floatRequestBodyID,
-    //         hols.floatRequestEndID,
-    //     ]
-    // })
-    //
-    // holidaySheet.getRange(getFirstEmptyRow(holidaySheet),1,formattedHolidaysToAdd.length,formattedHolidaysToAdd[0].length).setValues(formattedHolidaysToAdd)
+    const addedToFloat = addToFloat(holidaysToUpdate,holidaySheet)
+
+    const formattedHolidaysToAdd = addedToFloat.map((hols: Holidays) => {
+        return [
+            hols.tableID,
+            hols.holidayType,
+            hols.employeeEmail,
+            hols.bobRequestId,
+            hols.bobPolicy,
+            hols.startDate,
+            hols.startPortion,
+            hols.endDate,
+            hols.endPortion,
+            hols.floatRequestStartID,
+            hols.floatRequestBodyID,
+            hols.floatRequestEndID,
+        ]
+    })
+
+    holidaySheet.getRange(getFirstEmptyRow(holidaySheet),1,formattedHolidaysToAdd.length,formattedHolidaysToAdd[0].length).setValues(formattedHolidaysToAdd)
 }
 
 export default {

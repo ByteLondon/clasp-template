@@ -11,8 +11,8 @@ const floatFullDayRequest = (holiday: HolidaysBeforeFloat): FloatHolidays => {
         "start_date": holiday.startDate,
         "end_date": holiday.endDate,
         "hours": 7,
-        "full_day": 1,
-        "people_ids": [holiday.floatPersonId]
+        "full_day": "1",
+        "people_ids": holiday.floatPersonId
     }
 
     return floatPost('timeoffs', "post", payload)
@@ -25,8 +25,8 @@ const floatHalfDayRequest = (holiday: HolidaysBeforeFloat): FloatHolidays => {
         "end_date": holiday.endDate,
         "start_time": (holiday.startPortion === "afternoon") ? "14:00" : "9:00",
         "hours": 4,
-        "full_day": 0,
-        "people_ids": [holiday.floatPersonId]
+        "full_day": "0",
+        "people_ids": holiday.floatPersonId
     }
 
     return floatPost('timeoffs', "post", payload)

@@ -39,32 +39,32 @@ export const getFirstEmptyRow = (dataSheet: Sheet): number => {
     return (count + 1);
 }
 
-export const requestTypeDecoder = (targetType: string): number => {
+export const requestTypeDecoder = (targetType: string): string => {
     switch (targetType) {
         case "Birthday Day":
-            return 197160
+            return "197160"
         case "Compassionate":
-            return 46000
+            return "46000"
         case "Holiday":
-            return 46002
+            return "46002"
         case "Maternity / Paternity":
-            return 46000
+            return "46000"
         case "Medical Appointment":
-            return 159856
+            return "159856"
         case "Personal Appointment (Paid)":
-            return 159856
+            return "159856"
         case "Personal Appointment (Unpaid)":
-            return 159856
+            return "159856"
         case "Sick":
-            return 46001
+            return "46001"
         case "TOIL":
-            return 46000
+            return "46000"
         case "Training":
-            return 197161
+            return "197161"
         case "Unpaid Leave":
-            return 159206
+            return "159206"
         case "WFH due to sickness":
-            return 46001
+            return "46001"
         default:
             throw new Error("Leave Type incorrect/not found")
     }

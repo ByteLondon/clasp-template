@@ -64,12 +64,15 @@ export const floatPost = (endpoint:'timeoffs', method: 'post' , payloadData:Floa
     let url = "https://api.float.com/v3/" + endpoint
 
     const floatResponse = UrlFetchApp.fetch(url, floatRequestOptions())
+    Logger.log(floatRequestOptions())
+    Logger.log(payloadData.timeoff_type_id)
 
     const rawResponse: Array<any> = JSON.parse(floatResponse.getContentText())
-
+    Logger.log(rawResponse)
     if (!isFloatHolidays(rawResponse)) {
         throw new Error("Error in creating Float Response")
     }
+
     return rawResponse
 }
 

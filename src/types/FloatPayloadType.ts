@@ -1,22 +1,22 @@
-import {Is, isArray, isNumber, isOptional, isString, isStruct} from "../helper/guards";
+import {Is, isNumber, isOptional, isString, isStruct} from "../helper/guards";
 
 
 export type FloatPayloadType = {
-    timeoff_type_id: number,
+    timeoff_type_id: string,
     start_date: string,
     end_date: string,
     start_time?: string,
     hours: number,
-    full_day: number,
-    people_ids: Array<string>
+    full_day: string,
+    people_ids: string
 }
 
 export const isFloatPayload: Is<FloatPayloadType> = isStruct({
-    timeoff_type_id: isNumber,
+    timeoff_type_id: isString,
     start_date: isString,
     end_date: isString,
     start_time: isOptional(isString),
     hours: isNumber,
-    full_day: isNumber,
-    people_ids: isArray(isString)
+    full_day: isString,
+    people_ids: isString
 })

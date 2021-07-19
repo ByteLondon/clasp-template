@@ -39,7 +39,7 @@ export type HolidaysBeforeFloat = {
     floatPersonId:string,
     bobRequestId:number, // from Bob
     bobPolicy:string, // from Bob
-    floatPolicy:number, // from Process
+    floatPolicy:string, // from Process
     startDate:string, // from Bob
     startPortion:string, // from Bob
     endDate:string, // from Bob
@@ -56,7 +56,7 @@ export const isHolidaysBeforeFloat: Is<HolidaysBeforeFloat> = isStruct({
     floatPersonId:isString,
     bobRequestId:isNumber, // from Bob
     bobPolicy:isString, // from Bob
-    floatPolicy:isNumber, // from Process
+    floatPolicy:isString, // from Process
     startDate:isString, // from Bob
     startPortion:isString, // from Bob
     endDate:isString, // from Bob

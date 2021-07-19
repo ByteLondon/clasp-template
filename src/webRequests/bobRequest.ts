@@ -7,10 +7,7 @@ export const bobRequest = (endpoint: 'people' | 'changes', method: 'get' | 'post
     const bobURLRequest =(url: string, options: URLFetchRequestOptions) => {
 
         const encodedURL  = url.replace("+", "%2b")
-        Logger.log(encodedURL)
-        Logger.log(url)
         const bobRaw: string = UrlFetchApp.fetch(encodedURL, options).getContentText()
-        console.log(bobRaw)
         return JSON.parse(bobRaw)
     }
 
