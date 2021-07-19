@@ -50,7 +50,10 @@ export const floatHolidaySplitter = (holidaysToUpdateOriginal: HolidaysBeforeFlo
 
     const holidaysToUpdate = JSON.parse(JSON.stringify(holidaysToUpdateOriginal))
 
+    Logger.log(holidaysToUpdate)
+
     const numberOfDays = getNumberOfDays(holidaysToUpdate.startDate, holidaysToUpdate.endDate)
+
 
     const holidayIds: HolidaysIDFromFloat = {
         bobHolidayID: holidaysToUpdate.bobRequestId,
@@ -60,11 +63,12 @@ export const floatHolidaySplitter = (holidaysToUpdateOriginal: HolidaysBeforeFlo
     }
 
     // Case: Less than one day and not a full day
-    if (numberOfDays < 1 && holidaysToUpdate.startPortion != "full_day") {
+    if (numberOfDays < 1 && holidaysToUpdate.startPortion != "all_day") {
         holidayIds.floatHolidaysBodyID=floatHalfDayRequest(holidaysToUpdate).timeoff_id
 
         return holidayIds
     }
+
 
     if (holidaysToUpdate.startPortion === "afternoon") {
 

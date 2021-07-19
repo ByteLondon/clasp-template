@@ -64,11 +64,29 @@ export const floatPost = (endpoint:'timeoffs', method: 'post' , payloadData:Floa
     let url = "https://api.float.com/v3/" + endpoint
 
     const floatResponse = UrlFetchApp.fetch(url, floatRequestOptions())
-    Logger.log(floatRequestOptions())
-    Logger.log(payloadData.timeoff_type_id)
 
     const rawResponse: Array<any> = JSON.parse(floatResponse.getContentText())
     Logger.log(rawResponse)
+
+
+    // @ts-ignore
+    Logger.log(typeof rawResponse.timeoff_id)
+    Logger.log("timeoff_id")
+    // @ts-ignore
+    Logger.log(typeof rawResponse.timeoff_type_id)
+    Logger.log("timeoff_type_id")
+    // @ts-ignore
+    Logger.log(typeof rawResponse.start_date)
+    Logger.log("start_date")
+    // @ts-ignore
+    Logger.log(typeof rawResponse.end_date)
+    Logger.log("end_date")
+    // @ts-ignore
+    Logger.log(typeof rawResponse.people_ids)
+    Logger.log("people_ids")
+
+
+
     if (!isFloatHolidays(rawResponse)) {
         throw new Error("Error in creating Float Response")
     }
