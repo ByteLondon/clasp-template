@@ -11,7 +11,7 @@ import {floatHolidayDeleter, floatHolidaySplitter} from "../helper/addChangesToF
 import {isHolidays} from "../types/HolidayType";
 import Sheet = GoogleAppsScript.Spreadsheet.Sheet;
 
-import {BobHolidays,  isBobHolidaysArray} from "../types/BobHoliday";
+import {BobHolidays, BobHolidaysFraction, isBobHolidaysArray, isBobHolidaysFraction} from "../types/BobHoliday";
 import {getSheet} from "../helper/getSheet";
 
 
@@ -76,9 +76,9 @@ const getMapOfHolidaysInSheet = (holidaysSheet:Sheet): Map<number, Holidays> => 
     }, new Map())
 }
 
-const getAndFilterHolidayRequests = (holidaysInSheetMap: Map<number, Holidays>, holidaysFromBobs: Array<BobHolidays>): Array<BobHolidays> => {
+const getAndFilterHolidayRequests = (holidaysInSheetMap: Map<number, Holidays>, holidaysFromBobs: Array<BobHolidays|BobHolidaysFraction>): Array<BobHolidays|BobHolidaysFraction> => {
 
-    const filterHolidaysByTypeAndMap = (inMap :boolean, type: "Created" | "Deleted") => (holidaysFromBobs: BobHolidays): boolean => {
+    const filterHolidaysByTypeAndMap = (inMap :boolean, type: "Created" | "Deleted") => (holidaysFromBobs: BobHolidays|BobHolidaysFraction): boolean => {
         const typeMatch:boolean = holidaysFromBobs.changeType === type
         const mapMatchRaw:boolean = holidaysInSheetMap.has(holidaysFromBobs.requestId)
         const mapMatch:boolean  =  inMap ? mapMatchRaw : !mapMatchRaw
@@ -101,10 +101,13 @@ const getAndFilterHolidayRequests = (holidaysInSheetMap: Map<number, Holidays>, 
     return holidaysToUpdate
 }
 
-const createHolidayObjectArr =(filteredHolidays:Array<BobHolidays>, peopleMap: Map<string, Employee>, holidaysInSheetMap: Map<number, Holidays>):Array<HolidaysBeforeFloat> =>{
+const createHolidayObjectArr =(filteredHolidays:Array<BobHolidays|BobHolidaysFraction>, peopleMap: Map<string, Employee>, holidaysInSheetMap: Map<number, Holidays>):Array<HolidaysBeforeFloat> =>{
 
-    return filteredHolidays.flatMap((change:BobHolidays) =>{
+    return filteredHolidays.flatMap((change:BobHolidays|BobHolidaysFraction) =>{
         const floatID:string|undefined = peopleMap.get(change.employeeEmail)?.floatID
+        if(isBobHolidaysFraction(change)){
+            return []
+        }
         if(floatID){
             const output = {
                 holidayType: change.changeType,
@@ -121,6 +124,7 @@ const createHolidayObjectArr =(filteredHolidays:Array<BobHolidays>, peopleMap: M
                 floatHolidaysStartID: ( change.changeType === "Deleted"? holidaysInSheetMap.get(change.requestId)?.floatHolidaysStartID : undefined),
                 floatHolidaysBodyID: ( change.changeType === "Deleted"? holidaysInSheetMap.get(change.requestId)?.floatHolidaysBodyID : undefined),
                 floatHolidaysEndID: ( change.changeType === "Deleted"? holidaysInSheetMap.get(change.requestId)?.floatHolidaysEndID : undefined),
+                tableID: ( change.changeType === "Deleted"? holidaysInSheetMap.get(change.requestId)?.tableID : undefined),
             }
             if (isHolidaysBeforeFloat(output)) {
                 return output
@@ -130,7 +134,27 @@ const createHolidayObjectArr =(filteredHolidays:Array<BobHolidays>, peopleMap: M
     })
 }
 
-const addToFloat = (changesToUpdate: Array<HolidaysBeforeFloat>, holidaysSheet:Sheet ) : Array<Holidays> => {
+const addHolidayToGoogle = (holidayToUpdate: Holidays, holidaysSheet:Sheet )  => {
+
+        const singeHoliday:Array<Array<number|string>> =  [[
+            holidayToUpdate.tableID,
+            holidayToUpdate.holidayType,
+            holidayToUpdate.employeeEmail,
+            holidayToUpdate.bobRequestId,
+            holidayToUpdate.bobPolicy,
+            holidayToUpdate.startDate,
+            holidayToUpdate.startPortion,
+            holidayToUpdate.endDate,
+            holidayToUpdate.endPortion,
+            holidayToUpdate.floatHolidaysStartID,
+            holidayToUpdate.floatHolidaysBodyID,
+            holidayToUpdate.floatHolidaysEndID,
+        ]]
+
+        holidaysSheet.getRange(holidayToUpdate.tableID+1,1,1,singeHoliday[0].length).setValues(singeHoliday)
+}
+
+const addToFloat = (changesToUpdate: Array<HolidaysBeforeFloat>, holidaysSheet:Sheet )  => {
 
     let lastRow = getFirstEmptyRow(holidaysSheet) - 1
 
@@ -139,7 +163,7 @@ const addToFloat = (changesToUpdate: Array<HolidaysBeforeFloat>, holidaysSheet:S
         const holidayIds =  holidays.holidayType === "Created"? floatHolidaySplitter(holidays) : floatHolidayDeleter(holidays)
 
         const output = {
-            tableID: lastRow,
+            tableID: ( holidays.holidayType === "Deleted"? holidays.tableID : lastRow),
             holidayType: holidays.holidayType ,
             employeeEmail:holidays.employeeEmail,
             bobRequestId:holidays.bobRequestId,
@@ -153,15 +177,19 @@ const addToFloat = (changesToUpdate: Array<HolidaysBeforeFloat>, holidaysSheet:S
             floatHolidaysEndID:holidayIds.floatHolidaysEndID,
         }
 
-        lastRow += 1
+        if(output.holidayType === "Created"){
+            lastRow += 1
+        }
 
-        if(isHolidays(output)){
-            return output
-        } else{
+        if(!isHolidays(output)){
             throw new Error ("Failed to convert Float Update to GS format")
         }
+
+        addHolidayToGoogle(output,holidaysSheet)
     })
 }
+
+
 
 const updateGoogleWithChanges = () =>  {
     const holidaySheet = getSheet("changes")
@@ -171,31 +199,8 @@ const updateGoogleWithChanges = () =>  {
     const holidaysFromBobs = bobRequest("changes", "get",dateDaysAgo(1))
     const filteredHolidays = getAndFilterHolidayRequests(holidayMap,holidaysFromBobs)
     const holidaysToUpdate = createHolidayObjectArr(filteredHolidays,peopleMap,holidayMap)
+    addToFloat(holidaysToUpdate,holidaySheet)
 
-
-    /// split into single requests
-
-
-    const addedToFloat = addToFloat(holidaysToUpdate,holidaySheet)
-
-    const formattedHolidaysToAdd = addedToFloat.map((hols: Holidays) => {
-        return [
-            hols.tableID,
-            hols.holidayType,
-            hols.employeeEmail,
-            hols.bobRequestId,
-            hols.bobPolicy,
-            hols.startDate,
-            hols.startPortion,
-            hols.endDate,
-            hols.endPortion,
-            hols.floatHolidaysStartID,
-            hols.floatHolidaysBodyID,
-            hols.floatHolidaysEndID,
-        ]
-    })
-
-    holidaySheet.getRange(getFirstEmptyRow(holidaySheet),1,formattedHolidaysToAdd.length,formattedHolidaysToAdd[0].length).setValues(formattedHolidaysToAdd)
 }
 
 export default {

@@ -43,8 +43,9 @@ export const bobRequest = (endpoint: 'people' | 'changes', method: 'get' | 'post
             response = bobURLRequest(url, bobRequest()).changes
 
             if (!isBobHolidaysArray(response)) {
-                throw new Error("Bob Changes request Failed or is Corrupted")
+                throw new Error("Bob People Content Failed or is Corrupted")
             }
+
             break
         default:
             throw new Error("Please input a correct endpoint")
