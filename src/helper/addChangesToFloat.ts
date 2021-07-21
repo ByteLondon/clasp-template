@@ -33,9 +33,10 @@ const floatHalfDayRequest = (holiday: HolidaysBeforeFloat): FloatHolidays => {
 }
 
 export const floatHolidayDeleter = (holidaysToUpdate: HolidaysBeforeFloat):HolidaysIDFromFloat => {
-    const beforeHoliday = holidaysToUpdate.floatRequestStartID
-    const bodyHoliday = holidaysToUpdate.floatRequestBodyID
-    const afterHoliday = holidaysToUpdate.floatRequestEndID
+
+    const beforeHoliday = holidaysToUpdate.floatHolidaysStartID
+    const bodyHoliday = holidaysToUpdate.floatHolidaysBodyID
+    const afterHoliday = holidaysToUpdate.floatHolidaysEndID
 
     return  {
         bobHolidayID: holidaysToUpdate.bobRequestId,
@@ -49,8 +50,6 @@ export const floatHolidayDeleter = (holidaysToUpdate: HolidaysBeforeFloat):Holid
 export const floatHolidaySplitter = (holidaysToUpdateOriginal: HolidaysBeforeFloat):HolidaysIDFromFloat => {
 
     const holidaysToUpdate = JSON.parse(JSON.stringify(holidaysToUpdateOriginal))
-
-    Logger.log(holidaysToUpdate)
 
     const numberOfDays = getNumberOfDays(holidaysToUpdate.startDate, holidaysToUpdate.endDate)
 
@@ -82,13 +81,18 @@ export const floatHolidaySplitter = (holidaysToUpdateOriginal: HolidaysBeforeFlo
 
     if (holidaysToUpdate.endPortion === "morning") {
 
+
         const changesToUpdateEnd = JSON.parse(JSON.stringify(holidaysToUpdate))
+
+
         changesToUpdateEnd.startDate = changesToUpdateEnd.endDate
         changesToUpdateEnd.startPortion = changesToUpdateEnd.endPortion
 
+
+
         holidayIds.floatHolidaysEndID=floatHalfDayRequest(changesToUpdateEnd).timeoff_id
 
-        holidaysToUpdate.endDate = dateCalculator(holidaysToUpdate.startDate,-1 )
+        holidaysToUpdate.endDate = dateCalculator(holidaysToUpdate.endDate,-1 )
     }
 
     holidayIds.floatHolidaysBodyID=floatFullDayRequest(holidaysToUpdate).timeoff_id

@@ -47,7 +47,7 @@ const getPeopleMap = (peopleSheet:Sheet): Map<string, Employee> => {
 const getMapOfHolidaysInSheet = (holidaysSheet:Sheet): Map<number, Holidays> => {
 
     const holidaysIDSInSheetRaw : Array<Array<string>> = holidaysSheet.getRange(2, 1, getFirstEmptyRow(holidaysSheet) - 2, 12).getValues()
-    const holidaysInSheetArray: Array<Holidays> = holidaysIDSInSheetRaw.map(([tableID, holidayType, employeeEmail, bobRequestId, bobPolicy, startDate, startPortion, endDate, endPortion, floatRequestStartID, floatRequestBodyID, floatRequestEndID]: Array<string | number>) => {
+    const holidaysInSheetArray: Array<Holidays> = holidaysIDSInSheetRaw.map(([tableID, holidayType, employeeEmail, bobRequestId, bobPolicy, startDate, startPortion, endDate, endPortion, floatHolidaysStartID, floatHolidaysBodyID, floatHolidaysEndID]: Array<string | number>) => {
         const output = {
             tableID: tableID,
             holidayType: holidayType,
@@ -58,9 +58,11 @@ const getMapOfHolidaysInSheet = (holidaysSheet:Sheet): Map<number, Holidays> => 
             startPortion: startPortion,
             endDate: endDate,
             endPortion: endPortion,
-            floatRequestStartID: floatRequestStartID,
-            floatRequestBodyID: floatRequestBodyID,
-            floatRequestEndID: floatRequestEndID,
+            floatHolidaysStartID: floatHolidaysStartID,
+            floatHolidaysBodyID: floatHolidaysBodyID,
+            floatHolidaysEndID: floatHolidaysEndID,
+
+
         }
         if (isHolidays(output)) {
             return output
@@ -116,9 +118,9 @@ const createHolidayObjectArr =(filteredHolidays:Array<BobHolidays>, peopleMap: M
                 startPortion:change.startPortion,
                 endDate: change.endDate,
                 endPortion: change.endPortion,
-                floatRequestStartID: ( change.changeType === "Deleted"? holidaysInSheetMap.get(change.requestId)?.floatRequestStartID : undefined),
-                floatRequestBodyID: ( change.changeType === "Deleted"? holidaysInSheetMap.get(change.requestId)?.floatRequestBodyID : undefined),
-                floatRequestEndID: ( change.changeType === "Deleted"? holidaysInSheetMap.get(change.requestId)?.floatRequestEndID : undefined),
+                floatHolidaysStartID: ( change.changeType === "Deleted"? holidaysInSheetMap.get(change.requestId)?.floatHolidaysStartID : undefined),
+                floatHolidaysBodyID: ( change.changeType === "Deleted"? holidaysInSheetMap.get(change.requestId)?.floatHolidaysBodyID : undefined),
+                floatHolidaysEndID: ( change.changeType === "Deleted"? holidaysInSheetMap.get(change.requestId)?.floatHolidaysEndID : undefined),
             }
             if (isHolidaysBeforeFloat(output)) {
                 return output
@@ -169,6 +171,11 @@ const updateGoogleWithChanges = () =>  {
     const holidaysFromBobs = bobRequest("changes", "get",dateDaysAgo(1))
     const filteredHolidays = getAndFilterHolidayRequests(holidayMap,holidaysFromBobs)
     const holidaysToUpdate = createHolidayObjectArr(filteredHolidays,peopleMap,holidayMap)
+
+
+    /// split into single requests
+
+
     const addedToFloat = addToFloat(holidaysToUpdate,holidaySheet)
 
     const formattedHolidaysToAdd = addedToFloat.map((hols: Holidays) => {
@@ -182,9 +189,9 @@ const updateGoogleWithChanges = () =>  {
             hols.startPortion,
             hols.endDate,
             hols.endPortion,
-            hols.floatRequestStartID,
-            hols.floatRequestBodyID,
-            hols.floatRequestEndID,
+            hols.floatHolidaysStartID,
+            hols.floatHolidaysBodyID,
+            hols.floatHolidaysEndID,
         ]
     })
 

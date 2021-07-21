@@ -10,9 +10,9 @@ export type Holidays = {
     startPortion:string, // from Bob
     endDate:string, // from Bob
     endPortion:string, // from Bob
-    floatRequestStartID:number, // from Float
-    floatRequestBodyID:number, // from Float
-    floatRequestEndID:number, // from Float
+    floatHolidaysStartID:number, // from Float
+    floatHolidaysBodyID:number, // from Float
+    floatHolidaysEndID:number, // from Float
 }
 
 export const isHolidays: Is<Holidays> = isStruct({
@@ -25,9 +25,9 @@ export const isHolidays: Is<Holidays> = isStruct({
     startPortion:isString, // from Bob
     endDate:isString, // from Bob
     endPortion:isString, // from Bob
-    floatRequestStartID:isNumber, // from Float
-    floatRequestBodyID:isNumber, // from Float
-    floatRequestEndID:isNumber, // from Float
+    floatHolidaysStartID:isNumber, // from Float
+    floatHolidaysBodyID:isNumber, // from Float
+    floatHolidaysEndID:isNumber, // from Float
 })
 
 export const isHolidaysArray: Is<Array<Holidays>> = isArray(isHolidays)
@@ -44,9 +44,9 @@ export type HolidaysBeforeFloat = {
     startPortion:string, // from Bob
     endDate:string, // from Bob
     endPortion:string, // from Bob
-    floatRequestStartID?:number, // from Float
-    floatRequestBodyID?:number, // from Float
-    floatRequestEndID?:number, // from Float
+    floatHolidaysStartID?:number, // from Float
+    floatHolidaysBodyID?:number, // from Float
+    floatHolidaysEndID?:number, // from Float
 }
 
 export const isHolidaysBeforeFloat: Is<HolidaysBeforeFloat> = isStruct({
@@ -61,9 +61,9 @@ export const isHolidaysBeforeFloat: Is<HolidaysBeforeFloat> = isStruct({
     startPortion:isString, // from Bob
     endDate:isString, // from Bob
     endPortion:isString, // from Bob
-    floatRequestStartID:isOptional(isNumber), // from Float
-    floatRequestBodyID:isOptional(isNumber), // from Float
-    floatRequestEndID: isOptional(isNumber), // from Float
+    floatHolidaysStartID:isOptional(isNumber), // from Float
+    floatHolidaysBodyID:isOptional(isNumber), // from Float
+    floatHolidaysEndID: isOptional(isNumber), // from Float
 })
 
 export const isHolidaysBeforeFloatArray: Is<Array<HolidaysBeforeFloat>> = isArray(isHolidaysBeforeFloat)
