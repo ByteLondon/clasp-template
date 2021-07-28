@@ -40,6 +40,7 @@ export const bobRequest = (endpoint: 'people' | 'changes', method: 'get' | 'post
         case "changes":
 
             url = urlBase + "timeoff/requests/changes" + "?since=" + date
+            Logger.log(url)
             response = bobURLRequest(url, bobRequest()).changes
 
             if (!isBobHolidaysArray(response)) {

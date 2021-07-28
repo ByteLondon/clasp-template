@@ -80,7 +80,7 @@ const getAndFilterHolidayRequests = (holidaysInSheetMap: Map<number, Holidays>, 
 
     const filterHolidaysByTypeAndMap = (inMap :boolean, type: "Created" | "Deleted") => (holidaysFromBobs: BobHolidays|BobHolidaysFraction): boolean => {
         const typeMatch:boolean = holidaysFromBobs.changeType === type
-        const mapMatchRaw:boolean = holidaysInSheetMap.has(holidaysFromBobs.requestId)
+        const mapMatchRaw:boolean = holidaysInSheetMap.get(holidaysFromBobs.requestId)?.holidayType === "Created"
         const mapMatch:boolean  =  inMap ? mapMatchRaw : !mapMatchRaw
         return typeMatch && mapMatch
     }
@@ -156,10 +156,12 @@ const addHolidayToGoogle = (holidayToUpdate: Holidays, holidaysSheet:Sheet )  =>
 
 const addToFloat = (changesToUpdate: Array<HolidaysBeforeFloat>, holidaysSheet:Sheet )  => {
 
+
+
     let lastRow = getFirstEmptyRow(holidaysSheet) - 1
 
     return changesToUpdate.map((holidays:HolidaysBeforeFloat) =>{
-
+        Logger.log(holidays)
         const holidayIds =  holidays.holidayType === "Created"? floatHolidaySplitter(holidays) : floatHolidayDeleter(holidays)
 
         const output = {
@@ -196,7 +198,7 @@ const updateGoogleWithChanges = () =>  {
     const peopleSheet = getSheet("people")
     const peopleMap= getPeopleMap(peopleSheet)
     const holidayMap = getMapOfHolidaysInSheet(holidaySheet)
-    const holidaysFromBobs = bobRequest("changes", "get",dateDaysAgo(1))
+    const holidaysFromBobs = bobRequest("changes", "get",dateDaysAgo(3))
     const filteredHolidays = getAndFilterHolidayRequests(holidayMap,holidaysFromBobs)
     const holidaysToUpdate = createHolidayObjectArr(filteredHolidays,peopleMap,holidayMap)
     addToFloat(holidaysToUpdate,holidaySheet)

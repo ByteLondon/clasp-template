@@ -65,7 +65,19 @@ export const floatPost = (endpoint:'timeoffs', method: 'post' , payloadData:Floa
 
     const floatResponse = UrlFetchApp.fetch(url, floatRequestOptions())
 
-    const rawResponse: Array<any> = JSON.parse(floatResponse.getContentText())
+    const rawResponse = JSON.parse(floatResponse.getContentText())
+    Logger.log(rawResponse)
+
+    if(rawResponse[0]?.message === "This person already has a full day timeoff scheduled for this date"){
+        return {
+            timeoff_id: 88,
+            timeoff_type_id: "NA",
+            start_date: "NA",
+            end_date: "NA",
+            people_ids: [payloadData.people_ids]
+        }
+    }
+
     if (!isFloatHolidays(rawResponse)) {
         throw new Error("Error in creating Float Response")
     }
