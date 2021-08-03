@@ -105,27 +105,49 @@ const createHolidayObjectArr =(filteredHolidays:Array<BobHolidays|BobHolidaysFra
 
     return filteredHolidays.flatMap((change:BobHolidays|BobHolidaysFraction) =>{
         const floatID:string|undefined = peopleMap.get(change.employeeEmail)?.floatID
-        if(isBobHolidaysFraction(change)){
-            return []
-        }
+        let output
         if(floatID){
-            const output = {
-                holidayType: change.changeType,
-                employeeEmail:change.employeeEmail,
-                bobPersonId: change.employeeId,
-                floatPersonId: floatID,
-                bobRequestId: change.requestId,
-                bobPolicy:change.policyTypeDisplayName,
-                floatPolicy: requestTypeDecoder(change.policyTypeDisplayName),
-                startDate: change.startDate,
-                startPortion:change.startPortion,
-                endDate: change.endDate,
-                endPortion: change.endPortion,
-                floatHolidaysStartID: ( change.changeType === "Deleted"? holidaysInSheetMap.get(change.requestId)?.floatHolidaysStartID : undefined),
-                floatHolidaysBodyID: ( change.changeType === "Deleted"? holidaysInSheetMap.get(change.requestId)?.floatHolidaysBodyID : undefined),
-                floatHolidaysEndID: ( change.changeType === "Deleted"? holidaysInSheetMap.get(change.requestId)?.floatHolidaysEndID : undefined),
-                tableID: ( change.changeType === "Deleted"? holidaysInSheetMap.get(change.requestId)?.tableID : undefined),
+            if(isBobHolidaysFraction(change)){
+                output = {
+                    holidayType: change.changeType,
+                    hours: change.hoursOnDate,
+                    employeeEmail:change.employeeEmail,
+                    bobPersonId: change.employeeId,
+                    floatPersonId: floatID,
+                    bobRequestId: change.requestId,
+                    bobPolicy:change.policyTypeDisplayName,
+                    floatPolicy: requestTypeDecoder(change.policyTypeDisplayName),
+                    startDate: change.date,
+                    startPortion:"morning",
+                    endDate: change.date,
+                    endPortion: "morning",
+                    floatHolidaysStartID: ( change.changeType === "Deleted"? holidaysInSheetMap.get(change.requestId)?.floatHolidaysStartID : undefined),
+                    floatHolidaysBodyID: ( change.changeType === "Deleted"? holidaysInSheetMap.get(change.requestId)?.floatHolidaysBodyID : undefined),
+                    floatHolidaysEndID: ( change.changeType === "Deleted"? holidaysInSheetMap.get(change.requestId)?.floatHolidaysEndID : undefined),
+                    tableID: ( change.changeType === "Deleted"? holidaysInSheetMap.get(change.requestId)?.tableID : undefined),
+                }
             }
+            else {
+                output = {
+                    holidayType: change.changeType,
+                    hours: 0,
+                    employeeEmail:change.employeeEmail,
+                    bobPersonId: change.employeeId,
+                    floatPersonId: floatID,
+                    bobRequestId: change.requestId,
+                    bobPolicy:change.policyTypeDisplayName,
+                    floatPolicy: requestTypeDecoder(change.policyTypeDisplayName),
+                    startDate: change.startDate,
+                    startPortion:change.startPortion,
+                    endDate: change.endDate,
+                    endPortion: change.endPortion,
+                    floatHolidaysStartID: ( change.changeType === "Deleted"? holidaysInSheetMap.get(change.requestId)?.floatHolidaysStartID : undefined),
+                    floatHolidaysBodyID: ( change.changeType === "Deleted"? holidaysInSheetMap.get(change.requestId)?.floatHolidaysBodyID : undefined),
+                    floatHolidaysEndID: ( change.changeType === "Deleted"? holidaysInSheetMap.get(change.requestId)?.floatHolidaysEndID : undefined),
+                    tableID: ( change.changeType === "Deleted"? holidaysInSheetMap.get(change.requestId)?.tableID : undefined),
+                }
+            }
+
             if (isHolidaysBeforeFloat(output)) {
                 return output
             }

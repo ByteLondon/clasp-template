@@ -18,13 +18,13 @@ const floatFullDayRequest = (holiday: HolidaysBeforeFloat): FloatHolidays => {
     return floatPost('timeoffs', "post", payload)
 }
 
-const floatHalfDayRequest = (holiday: HolidaysBeforeFloat): FloatHolidays => {
+const floatHalfDayRequest = (holiday: HolidaysBeforeFloat, hours = 4): FloatHolidays => {
     const payload: FloatPayloadType = {
         "timeoff_type_id": requestTypeDecoder(holiday.bobPolicy),
         "start_date": holiday.startDate,
         "end_date": holiday.endDate,
         "start_time": (holiday.startPortion === "afternoon") ? "14:00" : "9:00",
-        "hours": 4,
+        "hours": hours,
         "full_day": "0",
         "people_ids": holiday.floatPersonId
     }
@@ -60,6 +60,14 @@ export const floatHolidaySplitter = (holidaysToUpdateOriginal: HolidaysBeforeFlo
         floatHolidaysBodyID: 0,
         floatHolidaysEndID: 0
     }
+
+    // Case: Less than one day and not a full day
+    if (holidaysToUpdate.hours > 0) {
+        holidayIds.floatHolidaysBodyID=floatHalfDayRequest(holidaysToUpdate,holidaysToUpdate.hours).timeoff_id
+
+        return holidayIds
+    }
+
 
     // Case: Less than one day and not a full day
     if (numberOfDays < 1 && holidaysToUpdate.startPortion != "all_day") {

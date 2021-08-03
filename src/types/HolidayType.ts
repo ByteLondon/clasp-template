@@ -34,6 +34,7 @@ export const isHolidaysArray: Is<Array<Holidays>> = isArray(isHolidays)
 
 export type HolidaysBeforeFloat = {
     holidayType: string, // from Bob
+    hours: number,
     employeeEmail:string, // from Bob
     bobPersonId:string,
     floatPersonId:string,
@@ -52,6 +53,7 @@ export type HolidaysBeforeFloat = {
 
 export const isHolidaysBeforeFloat: Is<HolidaysBeforeFloat> = isStruct({
     holidayType: isString, // from Bob
+    hours:isNumber,
     employeeEmail:isString, // from Bob
     bobPersonId:isString,
     floatPersonId:isString,
