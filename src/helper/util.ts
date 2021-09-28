@@ -65,6 +65,8 @@ export const requestTypeDecoder = (targetType: string): string => {
             return "159206"
         case "WFH due to sickness":
             return "46001"
+        case "R&D":
+            return "283225"
         default:
             throw new Error("Leave Type incorrect/not found")
     }
