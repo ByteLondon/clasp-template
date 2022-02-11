@@ -11,7 +11,7 @@ type FakeResponse = {
  * Stub various responses from specific urls
  * @param {Record<string, any>} responses
  */
-const responses: Record<string, any> = {}
+const responses: Record<string, FakeResponse> = {}
 
 global.UrlFetchApp = {
     fetch: (url: string) =>

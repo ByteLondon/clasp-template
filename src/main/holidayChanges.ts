@@ -184,6 +184,7 @@ const addToFloat = (changesToUpdate: Array<HolidaysBeforeFloat>, holidaysSheet:S
 
     return changesToUpdate.map((holidays:HolidaysBeforeFloat) =>{
         Logger.log(holidays)
+
         const holidayIds =  holidays.holidayType === "Created"? floatHolidaySplitter(holidays) : floatHolidayDeleter(holidays)
 
         const output = {

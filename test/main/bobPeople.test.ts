@@ -12,8 +12,7 @@ const fakeSheet = {
 }
 
 GasStubs.UrlFetchApp.addResponses({
-    'https://api.hibob.com/v1/people?showInactive=true': JSON.stringify(require("../../src/testing/bobPeople.json")),
-    'https://api.hibob.com/v1/people?showInacdtive=true': JSON.stringify(require("../../src/testing/bobPeople.json"))
+    'https://api.hibob.com/v1/people?showInactive=true': {content: JSON.stringify(require("../../src/testing/bobPeople.json"))}
 })
 
 

@@ -44,7 +44,7 @@ describe('addChangesToFloat', () => {
         })
 
         it('Should create a request in main body and end', () => {
-            const input = fakeHolidaysCreator("full_day", "2020-01-02", "morning")
+            const input = fakeHolidaysCreator("all_day", "2020-01-02", "morning")
             const expected = {
                 "bobHolidayID": 11111,
                 "floatHolidaysBodyID": 6848981,
@@ -56,7 +56,7 @@ describe('addChangesToFloat', () => {
         })
 
         it('Should create a request in main body and start', () => {
-            const input = fakeHolidaysCreator("afternoon", "2020-01-02", "full_day")
+            const input = fakeHolidaysCreator("afternoon", "2020-01-02", "all_day")
             const expected = {
                 "bobHolidayID": 11111,
                 "floatHolidaysBodyID": 6848981,
